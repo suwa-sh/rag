@@ -20,3 +20,6 @@ Icon
 
 # maven
 target
+
+# logs
+log
