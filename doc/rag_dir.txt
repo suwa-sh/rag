@@ -1,0 +1,49 @@
+rag/
+    bin/
+        start.bat
+        start.sh
+    lib/
+        rag-batch-1.0.jar
+        rag-application-1.0.jar
+        rag-domain-1.0.jar
+        rag-recognize-1.0.jar
+        :
+    project-a/
+        context/
+            project-a_context.json
+            analyze/
+                java_project_a.json
+                vbs_project_a.json
+                sql-oracle-project-a.json
+                sql-sqlserver-project-a.json
+        input/
+            boundary-talend.json
+            boundary-bat.json
+        output/
+            boundary-talend.csv
+            boundary-bat.csv
+    context/
+        system_context.json
+
+
+
+
+
+
+        java/
+            java.json
+            java-io.json
+            java-nio.json
+            java-jdbc.json
+            talend.json
+            jsp.json
+            servlet.json
+        cmd/
+            cmd.json
+        vbs/
+            vbs.json
+        sql/
+            sql-oracle.json
+            sql-sqlserver.json
+            sql-mysql.json
+

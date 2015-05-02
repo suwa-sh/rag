@@ -1,0 +1,25 @@
+{
+  "id":"OnErrorOperation",
+  "name":"エラー時の制御区分",
+  "packageName":"me.suwash.rag.classification",
+  "values":[
+    {
+        "id":"Abort",
+        "name":"中止",
+        "storeValue":"ABT"
+    },
+    {
+        "id":"Skip",
+        "name":"スキップ",
+        "storeValue":"SKP"
+    }
+  ],
+  "groups":[
+    {
+        "id":"default",
+        "name":"デフォルト",
+        "values":["Abort", "Skip"],
+        "defaultValue":"Abort"
+    }
+  ]
+}

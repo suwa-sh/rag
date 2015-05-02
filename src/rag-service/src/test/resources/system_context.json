@@ -1,0 +1,37 @@
+{
+    "analyzeDepthLimit" : 10,
+    "onError" : "Skip",
+    "boundaryAnalyzeId" : "shell",
+    "matchingRuleList" : [
+        {
+            "ruleName" : "extention_java",
+            "matchingMode" : "Extention",
+            "analyzeId" : "java",
+            "extention" : "java"
+        },
+        {
+            "ruleName" : "extention_bat",
+            "matchingMode" : "Extention",
+            "analyzeId" : "bat",
+            "extention" : "bat"
+        },
+        {
+            "ruleName" : "invoker_sqlplus",
+            "matchingMode" : "Invoker",
+            "analyzeId" : "sql_oracle",
+            "invokerKey" : "sqlplus",
+            "argumentType" : "Name",
+            "targetDirArgKey" : "",
+            "targetFileArgKey" : "@"
+        },
+        {
+            "ruleName" : "invoker_java_to_shell",
+            "matchingMode" : "Invoker",
+            "analyzeId" : "shell",
+            "invokerKey" : "java.lang.ProcessBuilder#ProcessBuilder(String[])",
+            "argumentType" : "Number",
+            "targetDirArgKey" : "",
+            "targetFileArgKey" : "1"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+  "id":"AnalyzeStatus",
+  "name":"分析ステータス",
+  "packageName":"me.suwash.rag.classification",
+  "values":[
+    {
+        "id":"Processing",
+        "name":"実行中",
+        "storeValue":"PRC"
+    },
+    {
+        "id":"Success",
+        "name":"成功",
+        "storeValue":"SUC"
+    },
+    {
+        "id":"Warning",
+        "name":"警告終了",
+        "storeValue":"WRN"
+    },
+    {
+        "id":"Error",
+        "name":"エラー終了",
+        "storeValue":"ERR"
+    },
+    {
+        "id":"Cancel",
+        "name":"中止",
+        "storeValue":"CNL"
+    }
+  ],
+  "groups":[
+    {
+        "id":"default",
+        "name":"デフォルト",
+        "values":["Processing", "Success", "Warning", "Error", "Cancel"],
+        "defaultValue":"Processing"
+    }
+  ]
+}

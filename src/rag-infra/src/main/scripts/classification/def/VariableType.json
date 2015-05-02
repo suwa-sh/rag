@@ -1,0 +1,25 @@
+{
+  "id":"VariableType",
+  "name":"変数タイプ",
+  "packageName":"me.suwash.rag.classification",
+  "values":[
+    {
+        "id":"Primitive",
+        "name":"プリミティブ型",
+        "storeValue":"PRM"
+    },
+    {
+        "id":"Reference",
+        "name":"参照型",
+        "storeValue":"REF"
+    }
+  ],
+  "groups":[
+    {
+        "id":"default",
+        "name":"デフォルト",
+        "values":["Primitive", "Reference"],
+        "defaultValue":"Primitive"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id":"DataStoreOperation",
+  "name":"データストア操作区分",
+  "packageName":"me.suwash.rag.classification",
+  "values":[
+    {
+        "id":"Create",
+        "name":"作成",
+        "storeValue":"CRE"
+    },
+    {
+        "id":"Read",
+        "name":"読込",
+        "storeValue":"REA"
+    },
+    {
+        "id":"Update",
+        "name":"更新",
+        "storeValue":"UPD"
+    },
+    {
+        "id":"Delete",
+        "name":"削除",
+        "storeValue":"DEL"
+    }
+  ],
+  "groups":[
+    {
+        "id":"default",
+        "name":"デフォルト",
+        "values":["Create", "Read", "Update", "Delete"],
+        "defaultValue":"Create"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id":"AnalyzeContextMatchingMode",
+  "name":"分析コンテキストマッチングモード",
+  "packageName":"me.suwash.rag.classification",
+  "values":[
+    {
+        "id":"Extention",
+        "name":"拡張子",
+        "storeValue":"EXT"
+    },
+    {
+        "id":"Invoker",
+        "name":"呼び出し元",
+        "storeValue":"INV"
+    }
+  ],
+  "groups":[
+    {
+        "id":"default",
+        "name":"デフォルト",
+        "values":["Extention", "Invoker"],
+        "defaultValue":"Extention"
+    }
+  ]
+}

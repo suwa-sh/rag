@@ -1,0 +1,15 @@
+{
+    "analyzeContextDir" : "/Users/suwa_sh/Documents/sts-bundle/workspace/rag-service/src/test/scripts/rag/project_ut/context/analyze",
+    "boundaryAnalyzeId" : "shell",
+    "matchingRuleList" : [
+        {
+            "ruleName" : "invoker_java_to_shell",
+            "matchingMode" : "Invoker",
+            "analyzeId" : "shell",
+            "invokerKey" : "java.lang.ProcessBuilder#ProcessBuilder(String[])",
+            "argumentType" : "Number",
+            "targetDirArgKey" : "",
+            "targetFileArgKey" : "1"
+        }
+    ]
+}

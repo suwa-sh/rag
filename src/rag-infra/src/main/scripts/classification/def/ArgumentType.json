@@ -1,0 +1,30 @@
+{
+  "id":"ArgumentType",
+  "name":"引数タイプ",
+  "packageName":"me.suwash.rag.classification",
+  "values":[
+    {
+        "id":"Number",
+        "name":"番号指定",
+        "storeValue":"NUM"
+    },
+    {
+        "id":"Name",
+        "name":"名前指定",
+        "storeValue":"NAM"
+    },
+    {
+        "id":"None",
+        "name":"引数なし",
+        "storeValue":"NON"
+    }
+  ],
+  "groups":[
+    {
+        "id":"default",
+        "name":"デフォルト",
+        "values":["Number", "Name", "None"],
+        "defaultValue":"Number"
+    }
+  ]
+}

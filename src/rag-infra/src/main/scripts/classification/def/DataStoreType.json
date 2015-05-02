@@ -1,0 +1,40 @@
+{
+  "id":"DataStoreType",
+  "name":"データストア種別",
+  "packageName":"me.suwash.rag.classification",
+  "values":[
+    {
+        "id":"File",
+        "name":"ファイル",
+        "storeValue":"FIL"
+    },
+    {
+        "id":"RDB",
+        "name":"RDB",
+        "storeValue":"RDB"
+    },
+    {
+        "id":"KvsMemory",
+        "name":"インメモリKVS",
+        "storeValue":"MKV"
+    },
+    {
+        "id":"KvsStorage",
+        "name":"ストレージKVS",
+        "storeValue":"SKV"
+    },
+    {
+        "id":"HDFS",
+        "name":"HDFS",
+        "storeValue":"HDF"
+    }
+  ],
+  "groups":[
+    {
+        "id":"default",
+        "name":"デフォルト",
+        "values":["File", "RDB", "KvsMemory", "KvsStorage", "HDFS"],
+        "defaultValue":"File"
+    }
+  ]
+}

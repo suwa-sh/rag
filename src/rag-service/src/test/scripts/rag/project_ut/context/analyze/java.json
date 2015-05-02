@@ -1,0 +1,11 @@
+{
+    "analyzeId" : "java",
+    "pathReplaceRuleList" : [
+        {
+            "ruleName" : "ragPackageToFileSeparatorForLinux",
+            "from" : "me.suwash.rag",
+            "to" : "/path/to/workspace/rag/src/main/jp/co/presa/rag",
+            "regex" : false
+        }
+    ]
+}

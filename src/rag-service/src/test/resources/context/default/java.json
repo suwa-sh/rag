@@ -1,0 +1,30 @@
+{
+    "analyzeId" : "java",
+    "includeAnalyzeIdList" : [
+        "java_io",
+        "java_nio",
+        "java_jdbc",
+        "java_talend"
+    ],
+    "pathReplaceRuleList" : [
+        {
+            "ruleName" : "DEFAULT_packageSeparatorToFileSeparator",
+            "from" : ".",
+            "to" : "${FILE_SEPARATOR}",
+            "regex" : false
+        },
+        {
+            "ruleName" : "DEFAULT_addJavaExtention",
+            "from" : "$",
+            "to" : ".java",
+            "regex" : true
+        }
+    ],
+    "varEncloseRuleList" : [
+        {
+            "ruleName" : "DEFAULT_instanceProperty",
+            "prefix" : "this.",
+            "surfix" : ""
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+  "id":"AnalyzeTargetType",
+  "name":"分析対象タイプ",
+  "packageName":"me.suwash.rag.classification",
+  "values":[
+    {
+        "id":"Sentence",
+        "name":"文",
+        "storeValue":"SNT"
+    },
+    {
+        "id":"Invoke",
+        "name":"呼び出し",
+        "storeValue":"INV"
+    }
+  ],
+  "groups":[
+    {
+        "id":"default",
+        "name":"デフォルト",
+        "values":["Sentence", "Invoke"],
+        "defaultValue":"Sentence"
+    }
+  ]
+}
