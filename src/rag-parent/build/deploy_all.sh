@@ -9,8 +9,9 @@ DIR_LOG=${DIR_SCRIPT}/log
 FILE_LOG=`basename $0 .sh`.log
 PATH_LOG=${DIR_LOG}/${FILE_LOG}
 
-EXEC_CMD="mvn clean site cobertura:cobertura install"
-EXEC_CMD_PARENT="mvn clean install"
+EXEC_CMD="mvn clean site cobertura:cobertura deploy"
+EXEC_CMD_PARENT="mvn clean deploy"
+#EXEC_CMD="mvn clean jacoco:prepare-agent test jacoco:report site:site install"
 
 
 #--------------------------------------------------

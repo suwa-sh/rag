@@ -25,7 +25,7 @@ import org.junit.Test;
 public class ContextManagerTest {
 
     private static ContextManager contextManager;
-    private static String projectContextFilePath = "/Users/suwa_sh/Documents/sts-bundle/workspace/rag-service/src/test/scripts/rag/project_ut/context/project_ut_context.json";
+    private static String projectContextFilePath = "src/test/scripts/rag/project_ut/context/project_ut_context.json";
 //    private static String projectContextFilePath = "/Users/suwa_sh/Documents/sts-bundle/workspace/rag-service/src/test/scripts/rag/project_ut/context/project_ut_context_pattern2.json";
 
     @BeforeClass
