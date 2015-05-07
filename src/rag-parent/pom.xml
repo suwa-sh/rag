@@ -36,6 +36,7 @@
 
         <java.version>1.7</java.version>
         <java.encoding>UTF-8</java.encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <spring.framework.version>[4.0,)</spring.framework.version>
         <core.package>me.suwash.rag</core.package>
@@ -113,6 +114,18 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <source>${java.version}</source>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <docencoding>${project.build.sourceEncoding}</docencoding>
+                    <charset>${project.build.sourceEncoding}</charset>
+                    <groups>
+                        <group>
+                            <title>Core Packages</title>
+                            <packages>${core.package}</packages>
+                        </group>
+                    </groups>
+                </configuration>
             </plugin>
             <!-- github mvn repo -->
             <plugin>
