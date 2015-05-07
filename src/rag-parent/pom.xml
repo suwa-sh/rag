@@ -6,7 +6,19 @@
     <version>0.1.0</version>
     <name>RAG</name>
     <description>Robustness Analysis Generator</description>
+    <url>https://github.com/suwa-sh/rag/wiki</url>
     <packaging>pom</packaging>
+
+    <scm>
+        <developerConnection>scm:git:git@github.com:suwa-sh/rag.git</developerConnection>
+        <url>https://github.com/suwa-sh/rag/</url>
+        <connection>scm:git:git://github.com/suwa-sh/rag.git</connection>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/suwa-sh/rag/issues</url>
+    </issueManagement>
 
     <modules>
         <module>../rag-infra</module>
@@ -356,4 +368,5 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+
 </project>
