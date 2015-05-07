@@ -20,6 +20,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ContextManagerTest {
@@ -169,6 +170,7 @@ public class ContextManagerTest {
         }
     }
 
+    @Ignore
     @Test
     public final void testGetReplacedPath_パス置換ルールにマッチしない場合() {
         String analyzeId = "java";
@@ -189,6 +191,7 @@ public class ContextManagerTest {
         }
     }
 
+    @Ignore
     @Test
     public final void testGetReplacedPath() {
         String analyzeId = "java";
