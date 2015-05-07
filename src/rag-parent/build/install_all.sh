@@ -1,16 +1,16 @@
 #!/bin/sh
 #================================================================================
+# 一括install
 #================================================================================
 #--------------------------------------------------
 # 変数定義
 #--------------------------------------------------
-DIR_SCRIPT=`dirname $0`
+DIR_SCRIPT=$(cd $(dirname $0);pwd)
 DIR_LOG=${DIR_SCRIPT}/log
 FILE_LOG=`basename $0 .sh`.log
 PATH_LOG=${DIR_LOG}/${FILE_LOG}
 
-EXEC_CMD="mvn clean site cobertura:cobertura install"
-EXEC_CMD_PARENT="mvn clean install"
+EXEC_CMD="mvn -am clean site cobertura:cobertura install"
 
 
 #--------------------------------------------------
@@ -22,54 +22,15 @@ if [ ! -e ${DIR_LOG} ]; then
     mkdir ${DIR_LOG}
 fi
 
+
 #--------------------------------------------------
 # 主処理
 #--------------------------------------------------
 cd ..
-echo [parent] ${EXEC_CMD_PARENT} | tee -a ${PATH_LOG}
-${EXEC_CMD_PARENT} >> ${PATH_LOG} 2>&1
+echo ${EXEC_CMD} | tee -a ${PATH_LOG}
+${EXEC_CMD} | tee -a ${PATH_LOG} 2>&1
 if [ $? -ne 0 ]; then
     echo build failure ${EXEC_CMD_PARENT} | tee -a ${PATH_LOG}
-    exit 1
-fi
-
-echo [infra layer] ${EXEC_CMD} | tee -a ${PATH_LOG}
-cd ../rag-infra
-${EXEC_CMD} >> ${PATH_LOG} 2>&1
-if [ $? -ne 0 ]; then
-    echo build failure ${EXEC_CMD} | tee -a ${PATH_LOG}
-    exit 1
-fi
-
-echo [recognize layer] ${EXEC_CMD} | tee -a ${PATH_LOG}
-cd ../rag-recognize
-${EXEC_CMD} >> ${PATH_LOG}  2>&1
-if [ $? -ne 0 ]; then
-    echo build failure ${EXEC_CMD} | tee -a ${PATH_LOG}
-    exit 1
-fi
-
-echo [service layer] ${EXEC_CMD} | tee -a ${PATH_LOG}
-cd ../rag-service
-${EXEC_CMD} >> ${PATH_LOG} 2>&1
-if [ $? -ne 0 ]; then
-    echo build failure ${EXEC_CMD} | tee -a ${PATH_LOG}
-    exit 1
-fi
-
-echo [application layer] ${EXEC_CMD} | tee -a ${PATH_LOG}
-cd ../rag-application
-${EXEC_CMD} >> ${PATH_LOG} 2>&1
-if [ $? -ne 0 ]; then
-    echo build failure ${EXEC_CMD} | tee -a ${PATH_LOG}
-    exit 1
-fi
-
-echo [batch layer] ${EXEC_CMD} | tee -a ${PATH_LOG}
-cd ../rag-batch
-${EXEC_CMD} >> ${PATH_LOG} 2>&1
-if [ $? -ne 0 ]; then
-    echo build failure ${EXEC_CMD} | tee -a ${PATH_LOG}
     exit 1
 fi
 

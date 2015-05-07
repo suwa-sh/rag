@@ -7,6 +7,15 @@
     <name>RAG</name>
     <description>Robustness Analysis Generator</description>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>../rag-infra</module>
+        <module>../rag-recognize</module>
+        <module>../rag-service</module>
+        <module>../rag-application</module>
+        <module>../rag-batch</module>
+    </modules>
+
     <properties>
         <github.global.server>github</github.global.server>
         <github.repository.name>mvn-repo</github.repository.name>
@@ -18,7 +27,6 @@
 
         <spring.framework.version>[4.0,)</spring.framework.version>
         <core.package>me.suwash.rag</core.package>
-        <jacoco.include.package>${core.package}.*</jacoco.include.package>
 
         <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
         <maven-site-plugin.version>3.3</maven-site-plugin.version>
@@ -70,6 +78,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -83,6 +92,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -334,11 +344,6 @@
                 <version>${dashboard-maven-plugin.version}</version>
             </plugin>
 
-            <!-- JaCoCo -->
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </reporting>
 
