@@ -1,6 +1,6 @@
 #!/bin/sh
 #================================================================================
-# 一括install
+# 一括deploy
 #================================================================================
 #--------------------------------------------------
 # 変数定義
@@ -10,7 +10,7 @@ DIR_LOG=${DIR_SCRIPT}/log
 FILE_LOG=`basename $0 .sh`.log
 PATH_LOG=${DIR_LOG}/${FILE_LOG}
 
-EXEC_CMD="mvn -am clean site cobertura:cobertura install"
+EXEC_CMD="mvn -am clean deploy -Dmaven.test.skip=true"
 
 
 #--------------------------------------------------

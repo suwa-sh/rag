@@ -1,5 +1,5 @@
 {
-    "analyzeContextDir" : "/Users/suwa_sh/Documents/sts-bundle/workspace/rag-service/src/test/scripts/rag/project_ut/context/analyze",
+    "analyzeContextDir" : "src/test/scripts/rag/project_ut/context/analyze",
     "boundaryAnalyzeId" : "shell",
     "matchingRuleList" : [
         {
