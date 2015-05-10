@@ -40,7 +40,7 @@ public class JavaListenerTest {
             "    }" +
             "}";
 
-    private static final String trgFilePath = "/Users/suwa_sh/Documents/sts-bundle/workspace/ddd/src/main/java/me/suwash/ddd/classification/ProcessStatus.java";
+    private static final String trgFilePath = "src/main/java/me/suwash/rag/sv/domain/analyze/AnalyzeDetail.java";
 
     @Test
     public final void test() {
