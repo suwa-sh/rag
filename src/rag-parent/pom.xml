@@ -181,11 +181,6 @@
                         <format>html</format>
                         <format>xml</format>
                     </formats>
-                    <instrumentation>
-                        <!-- ignoreはパッケージ名で指定。 <ignores> <ignore>me.suwash.rag.*</ignore> </ignores> -->
-                        <!-- includes/excludesはスラッシュ区切り,classを指定 <includes> <include>me/suwash/rag/**/*.class</include>
-                            </includes> <excludes> <exclude>**/*Test*.class</exclude> </excludes> -->
-                    </instrumentation>
                 </configuration>
             </plugin>
             <!-- Surefire -->
@@ -196,6 +191,13 @@
                     <argLine>-XX:-UseSplitVerifier</argLine>
                 </configuration>
             </plugin>
+            <!-- versions -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>1.3.1</version>
+            </plugin>
+            <!-- m2e -->
             <plugin>
                 <groupId>org.eclipse.m2e</groupId>
                 <artifactId>lifecycle-mapping</artifactId>
@@ -235,7 +237,7 @@
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
-            <version>[1,)</version>
+            <version>1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -250,17 +252,17 @@
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib-nodep</artifactId>
-            <version>2.2</version>
+            <version>3.1</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.6.8</version>
+            <version>1.8.5</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.6.8</version>
+            <version>1.8.5</version>
         </dependency>
         <!-- test -->
         <dependency>
@@ -283,6 +285,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.8</version>
             </plugin>
 
             <!-- JXR -->
@@ -359,6 +362,25 @@
                 <configuration>
                     <xmlOutput>true</xmlOutput>
                     <effort>Max</effort>
+                </configuration>
+            </plugin>
+
+            <!-- PMD -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.4</version>
+            </plugin>
+
+            <!-- CheckStyle -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.15</version>
+                <configuration>
+                    <enableRulesSummary>false</enableRulesSummary>
+                    <!-- <configLocation></configLocation> -->
+                    <consoleOutput>true</consoleOutput>
                 </configuration>
             </plugin>
 
