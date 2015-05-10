@@ -181,11 +181,6 @@
                         <format>html</format>
                         <format>xml</format>
                     </formats>
-                    <instrumentation>
-                        <!-- ignoreはパッケージ名で指定。 <ignores> <ignore>me.suwash.rag.*</ignore> </ignores> -->
-                        <!-- includes/excludesはスラッシュ区切り,classを指定 <includes> <include>me/suwash/rag/**/*.class</include>
-                            </includes> <excludes> <exclude>**/*Test*.class</exclude> </excludes> -->
-                    </instrumentation>
                 </configuration>
             </plugin>
             <!-- Surefire -->
