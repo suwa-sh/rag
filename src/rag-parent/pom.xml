@@ -52,7 +52,7 @@
         <maven-site-plugin.version>3.3</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>2.8</maven-project-info-reports-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
-        <cobertura-maven-plugin.version>2.5</cobertura-maven-plugin.version>
+        <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
         <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
         <maven-surefire-report-plugin.version>2.9</maven-surefire-report-plugin.version>
         <maven-javadoc-plugin.version>2.10.1</maven-javadoc-plugin.version>
@@ -196,6 +196,9 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <argLine>-XX:-UseSplitVerifier</argLine>
+                    <systemPropertyVariables>
+                        <org.jboss.logging.provider>slf4j</org.jboss.logging.provider>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <!-- versions -->
