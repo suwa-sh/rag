@@ -45,7 +45,7 @@ public class ExampleItemReader implements ItemReader<ExampleInDto> {
      */
     public ExampleInDto read() throws Exception {
         // TODO 引数のタイムスタンプを利用して何かする
-        System.out.println("--- ︎" + SimpleDateFormat.getTimeInstance().format(startDatetime));
+        System.out.println("◼◼◼ ︎" + SimpleDateFormat.getTimeInstance().format(startDatetime));
 
         if (index < inputs.length) {
             ExampleInDto dto = new ExampleInDto();
