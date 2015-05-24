@@ -9,9 +9,18 @@ import me.suwash.rag.sv.context.detail.VarEncloseRule;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * TODO クラスの説明。
+ */
 public class Scope {
     private Map<String, Variable> varMap = new HashMap<String, Variable>();
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param name xxx
+     * @return xxx
+     */
     public Variable getVariable(String name) {
         // 必須チェック
         if (StringUtils.isEmpty(name)) {
@@ -28,6 +37,13 @@ public class Scope {
         return null;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param analyzeId xxx
+     * @param name xxx
+     * @return xxx
+     */
     public Variable getVariable(String analyzeId, String name) {
         // 必須チェック
         if (StringUtils.isEmpty(name)) {
@@ -55,12 +71,21 @@ public class Scope {
         return null;
     }
 
-
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param variable xxx
+     */
     public void addVariable(Variable variable) {
         varMap.put(variable.getName(), variable);
     }
 
-
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param analyzeId xxx
+     * @param variable xxx
+     */
     public void addVariable(String analyzeId, Variable variable) {
         // analyzeIdが指定されていない場合、指定なしのメソッドに処理を移譲
         if (StringUtils.isEmpty(analyzeId)) {

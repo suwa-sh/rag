@@ -7,9 +7,9 @@ import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
-import me.suwash.ddd.classification.ProcessStatus;
 import me.suwash.ddd.exception.SvLayerException;
 import me.suwash.rag.classification.AnalyzePhase;
+import me.suwash.rag.classification.AnalyzeStatus;
 import me.suwash.rag.infra.Loggable;
 import me.suwash.rag.sv.domain.analyzer.Analyzer;
 import me.suwash.rag.sv.domain.analyzer.AnalyzerInput;
@@ -20,9 +20,9 @@ import org.slf4j.Logger;
 /**
  * 文法毎の分析処理基底クラス。
  * TODO AnalyzerにListener, AnalyzeIdを設定できれば、サブクラス分割はいらないかも！
- *      → メソッドをフェーズにする？validate, pathReplace, parse, walk(operationMatching, applyOperation)
- *      → walk済みのファイルなら、呼び出し先のメソッドまで一気に飛びたい。
- *        → AntlrのAPIをもう少し把握しないと無理
+ * → メソッドをフェーズにする？validate, pathReplace, parse, walk(operationMatching, applyOperation)
+ * → walk済みのファイルなら、呼び出し先のメソッドまで一気に飛びたい。
+ * → AntlrのAPIをもう少し把握しないと無理
  */
 @Named
 public class AnalyzerImpl implements Analyzer {
@@ -47,10 +47,8 @@ public class AnalyzerImpl implements Analyzer {
         output.getCurrentDetail().setPhase(AnalyzePhase.Validate);
         output = validate(input, output);
         logger.debug("[END  ]validate");
-        if (
-                ! ProcessStatus.Processing.equals(output.getStatus()) &&
-                ! ProcessStatus.Warning.equals(output.getStatus())
-            ) {
+        if (!AnalyzeStatus.Processing.equals(output.getStatus()) &&
+            !AnalyzeStatus.Warning.equals(output.getStatus())) {
             return output;
         }
 
@@ -59,10 +57,8 @@ public class AnalyzerImpl implements Analyzer {
         output.getCurrentDetail().setPhase(AnalyzePhase.OperationMatching);
         output = operationMatching(input, output);
         logger.debug("[END  ]validate");
-        if (
-                ! ProcessStatus.Processing.equals(output.getStatus()) &&
-                ! ProcessStatus.Warning.equals(output.getStatus())
-            ) {
+        if (!AnalyzeStatus.Processing.equals(output.getStatus()) &&
+            !AnalyzeStatus.Warning.equals(output.getStatus())) {
             return output;
         }
 
@@ -71,10 +67,8 @@ public class AnalyzerImpl implements Analyzer {
         output.getCurrentDetail().setPhase(AnalyzePhase.ReplacePath);
         output = pathReplace(input, output);
         logger.debug("[END  ]pathReplace");
-        if (
-                ! ProcessStatus.Processing.equals(output.getStatus()) &&
-                ! ProcessStatus.Warning.equals(output.getStatus())
-            ) {
+        if (!AnalyzeStatus.Processing.equals(output.getStatus()) &&
+            !AnalyzeStatus.Warning.equals(output.getStatus())) {
             return output;
         }
 
@@ -83,10 +77,8 @@ public class AnalyzerImpl implements Analyzer {
         output.getCurrentDetail().setPhase(AnalyzePhase.Parse);
         output = parse(input, output);
         logger.debug("[END  ]parse");
-        if (
-                ! ProcessStatus.Processing.equals(output.getStatus()) &&
-                ! ProcessStatus.Warning.equals(output.getStatus())
-            ) {
+        if (!AnalyzeStatus.Processing.equals(output.getStatus()) &&
+            !AnalyzeStatus.Warning.equals(output.getStatus())) {
             return output;
         }
 
@@ -133,11 +125,17 @@ public class AnalyzerImpl implements Analyzer {
         return output;
     }
 
-
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param input xxx
+     * @param output xxx
+     * @return xxx
+     */
     private AnalyzerOutput operationMatching(AnalyzerInput input, AnalyzerOutput output) {
         // TODO ContextManager#operationMathingを実行
-        //      呼び出し文、引数からデータストア操作にマッチング
-        //      マッチした場合、AnalyzeWorkにCSV出力の元データを追加して、analyzeをここで終了
+        // 呼び出し文、引数からデータストア操作にマッチング
+        // マッチした場合、AnalyzeWorkにCSV出力の元データを追加して、analyzeをここで終了
         return null;
     }
 
@@ -150,7 +148,7 @@ public class AnalyzerImpl implements Analyzer {
      */
     private AnalyzerOutput pathReplace(AnalyzerInput input, AnalyzerOutput output) {
         // TODO ContextManager#pathReplaceを実行
-        //      ここまでanalyzeIdがinputで引きまわす必要がありそう。
+        // ここまでanalyzeIdがinputで引きまわす必要がありそう。
         return output;
     }
 
@@ -163,10 +161,10 @@ public class AnalyzerImpl implements Analyzer {
      */
     private AnalyzerOutput parse(AnalyzerInput input, AnalyzerOutput output) {
         // TODO 対象ファイルパスをparseしてAntlr拡張のListener取得まで
-        //      同一ファイルを複数箇所で利用している場合に、再度parseする必要がないようにparse結果をキャッシュしておきたい。
-        //        →キャッシュに含まれる場合は、parse処理を行わず、即時で返却して終了。
-        //          →キャッシュするためには、メソッド呼び出しだとしても、importやプロパティなどの変数Mapが必要＋後続のOperationも全て整理が必要
-        //            →毎回parseすれば安全かな。
+        // 同一ファイルを複数箇所で利用している場合に、再度parseする必要がないようにparse結果をキャッシュしておきたい。
+        // →キャッシュに含まれる場合は、parse処理を行わず、即時で返却して終了。
+        // →キャッシュするためには、メソッド呼び出しだとしても、importやプロパティなどの変数Mapが必要＋後続のOperationも全て整理が必要
+        // →毎回parseすれば安全かな。
         return output;
     }
 

@@ -52,6 +52,7 @@
         <maven-site-plugin.version>3.3</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>2.8</maven-project-info-reports-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
+        <maven-pmd-plugin.version>2.4</maven-pmd-plugin.version>
         <cobertura-maven-plugin.version>2.5</cobertura-maven-plugin.version>
         <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
         <maven-surefire-report-plugin.version>2.9</maven-surefire-report-plugin.version>
@@ -59,6 +60,8 @@
         <findbugs-maven-plugin.version>3.0.0</findbugs-maven-plugin.version>
         <dashboard-maven-plugin.version>1.0.0-beta-1</dashboard-maven-plugin.version>
         <javancss-maven-plugin.version>2.0</javancss-maven-plugin.version>
+        <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
+        <jdepend-maven-plugin.version>2.0</jdepend-maven-plugin.version>
     </properties>
 
     <repositories>
@@ -82,6 +85,8 @@
     </distributionManagement>
 
     <build>
+        <!-- <extensions> <extension> <groupId>me.suwash</groupId> <artifactId>checks</artifactId>
+            <version>0.1.0</version> </extension> </extensions> -->
         <plugins>
             <!-- Compiler -->
             <plugin>
@@ -178,6 +183,18 @@
                     <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.15</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>me.suwash</groupId>
+                        <artifactId>checks</artifactId>
+                        <version>0.1.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
             <!-- Cobertura -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -249,6 +266,25 @@
                                 </lifecycleMappingMetadata>
                             </configuration>
                         </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-eclipse-plugin</artifactId>
+                            <version>2.8</version>
+                            <configuration>
+                                <additionalBuildcommands>
+                                    <buildcommand>net.sf.eclipsecs.core.CheckstyleBuilder</buildcommand>
+                                </additionalBuildcommands>
+                                <additionalProjectnatures>
+                                    <projectnature>net.sf.eclipsecs.core.CheckstyleNature</projectnature>
+                                </additionalProjectnatures>
+                                <additionalConfig>
+                                    <file>
+                                        <name>.checkstyle</name>
+                                        <location>/eclipse/checkstyle.xml</location>
+                                    </file>
+                                </additionalConfig>
+                            </configuration>
+                        </plugin>
                     </plugins>
                 </pluginManagement>
             </build>
@@ -259,6 +295,11 @@
         <dependency>
             <groupId>me.suwash</groupId>
             <artifactId>ddd</artifactId>
+            <version>[0.1.0,)</version>
+        </dependency>
+        <dependency>
+            <groupId>me.suwash</groupId>
+            <artifactId>checks</artifactId>
             <version>[0.1.0,)</version>
         </dependency>
         <dependency>
@@ -421,7 +462,32 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.4</version>
+                <version>${maven-pmd-plugin.version}</version>
+                <configuration>
+                    <targetJdk>${java.version}</targetJdk>
+                    <rulesets>
+                        <ruleset>rulesets/basic.xml</ruleset>
+                        <ruleset>rulesets/braces.xml</ruleset>
+                        <ruleset>rulesets/clone.xml</ruleset>
+                        <ruleset>rulesets/codesize.xml</ruleset>
+                        <ruleset>rulesets/controversial.xml</ruleset>
+                        <ruleset>rulesets/coupling.xml</ruleset>
+                        <ruleset>rulesets/design.xml</ruleset>
+                        <ruleset>rulesets/finalizers.xml</ruleset>
+                        <ruleset>rulesets/imports.xml</ruleset>
+                        <ruleset>rulesets/j2ee.xml</ruleset>
+                        <ruleset>rulesets/junit.xml</ruleset>
+                        <ruleset>rulesets/logging-java.xml</ruleset>
+                        <ruleset>rulesets/migrating.xml</ruleset>
+                        <ruleset>rulesets/optimizations.xml</ruleset>
+                        <ruleset>rulesets/strictexception.xml</ruleset>
+                        <ruleset>rulesets/strings.xml</ruleset>
+                        <ruleset>rulesets/sunsecure.xml</ruleset>
+                        <ruleset>rulesets/unusedcode.xml</ruleset>
+                        <!-- <ruleset>rulesets/logging-jakarta-commons.xml</ruleset> <ruleset>rulesets/javabeans.xml</ruleset>
+                            <ruleset>rulesets/naming.xml</ruleset> -->
+                    </rulesets>
+                </configuration>
             </plugin>
 
             <!-- CheckStyle -->
@@ -431,8 +497,12 @@
                 <version>2.15</version>
                 <configuration>
                     <enableRulesSummary>false</enableRulesSummary>
-                    <!-- <configLocation></configLocation> -->
                     <consoleOutput>true</consoleOutput>
+                    <excludes>
+                        **/src/test/java/**/*.java
+                    </excludes>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <configLocation>checkstyle/checkstyle.xml</configLocation>
                 </configuration>
             </plugin>
 
@@ -443,17 +513,20 @@
                 <version>${dashboard-maven-plugin.version}</version>
             </plugin>
 
+            <!-- JDepend -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>${jdepend-maven-plugin.version}</version>
+            </plugin>
+
+            <!-- taglist -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
+                <version>${taglist-maven-plugin.version}</version>
+            </plugin>
         </plugins>
     </reporting>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>Codehaus</id>
-            <url>http://repository.codehaus.org/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>

@@ -11,13 +11,13 @@ import me.suwash.util.Stack;
  */
 public class AnalyzeWork {
 
-    /** カレントディレクトリStack */
+    /** カレントディレクトリStack。 */
     private Stack<String> curDirStack = new Stack<String>();
-    /** 呼び出し元Stack */
+    /** 呼び出し元Stack。 */
     private Stack<Invoker> invokerStack = new Stack<Invoker>();
-    /** スコープStack */
+    /** スコープStack。 */
     private Stack<Scope> scopeStack = new Stack<Scope>();
-    /** stasicフィールドMap */
+    /** stasicフィールドMap。 */
     private Map<String, Variable> staticFieldMap = new HashMap<String, Variable>();
 
     /**
@@ -69,6 +69,8 @@ public class AnalyzeWork {
 
     /**
      * スコープStackから最後に追加した要素を返し、Stackから削除します。
+     *
+     * @return Scope
      */
     public Scope popScope() {
         return scopeStack.pop();
@@ -76,6 +78,8 @@ public class AnalyzeWork {
 
     /**
      * スコープStackから最後に追加した要素を返します。
+     *
+     * @return Scope
      */
     public Scope getCurScope() {
         return scopeStack.peek();
@@ -122,6 +126,13 @@ public class AnalyzeWork {
     //            ※walk中に、自分の変数名が必要。再帰呼び出しの引数に追加が必要か？
     // TODO walkで、プリミティブ型変数に代入していたら、addVariable
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param type xxx
+     * @param name xxx
+     * @return Variable
+     */
     public Variable getStaticField(String type, String name) {
         // TODO 未実装
         return null;
@@ -137,7 +148,7 @@ public class AnalyzeWork {
      */
     public void addStaticField(String ownerType, String name, String type, String value) {
         if (staticFieldMap.containsKey(ownerType)) {
-
+            // TODO
         }
     }
 
@@ -160,6 +171,8 @@ public class AnalyzeWork {
 
     /**
      * 呼び出し元Stackから最後に追加した要素を返し、Stackから削除します。
+     *
+     * @return Invoker
      */
     public Invoker popInvoker() {
         return invokerStack.pop();
@@ -167,6 +180,8 @@ public class AnalyzeWork {
 
     /**
      * 呼び出し元Stackから最後に追加した要素を返します。
+     *
+     * @return Invoker
      */
     public Invoker getCurInvoker() {
         return invokerStack.peek();

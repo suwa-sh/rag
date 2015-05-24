@@ -1,17 +1,13 @@
 package me.suwash.rag.sv.domain.analyzer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 
-import me.suwash.ddd.classification.ProcessStatus;
 import me.suwash.rag.classification.AnalyzeStatus;
 import me.suwash.rag.classification.AnalyzeTargetType;
 import me.suwash.rag.sv.domain.analyze.AnalyzeWork;
-import me.suwash.rag.sv.domain.analyzer.AnalyzerInput;
-import me.suwash.rag.sv.domain.analyzer.AnalyzerOutput;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -70,7 +66,7 @@ public class AnalyzerTest {
         //---------------------------------------------
         // 準備
         //---------------------------------------------
-        String analyzeTarget = "";
+//        String analyzeTarget = "";
         AnalyzeTargetType analyzeTargetType = AnalyzeTargetType.Invoke;
         AnalyzeWork analyzeWork = new AnalyzeWork();
 

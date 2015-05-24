@@ -23,7 +23,7 @@ import org.apache.commons.lang.StringUtils;
  * </pre>
  */
 public class InvokeStatement {
-    /** 呼び出しロジックに処理名の指定が不要な場合のダミー値 */
+    /** 呼び出しロジックに処理名の指定が不要な場合のダミー値。 */
     public static final String METHOD_NAME_DUMMY = "dummy";
 
     /**
@@ -40,14 +40,14 @@ public class InvokeStatement {
     private String invokeTargetType;
 
     /**
-     * 呼び出し先処理
+     * 呼び出し先処理。
      * package.name.TypeName#MethodName(ArgType1, ArgType2)
      *   → MethodName
      */
     private String invokeTargetMethod;
 
     /**
-     * 呼び出し先処理引数の型リスト
+     * 呼び出し先処理引数の型リスト。
      * package.name.TypeName#MethodName(ArgType1, ArgType2)
      *   → [ArgType1, ArgType2]
      */
@@ -67,22 +67,48 @@ public class InvokeStatement {
         this.argumentTypeList = getArgumentTypeList(analyzeTarget);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public String getAnalyzeTarget() {
         return analyzeTarget;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public String getInvokeTargetType() {
         return invokeTargetType;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public String getInvokeTargetMethod() {
         return invokeTargetMethod;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public List<String> getArgumentTypeList() {
         return argumentTypeList;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param analyzeTarget xxx
+     * @return xxx
+     */
     private String getInvokeTargetType(String analyzeTarget) {
         // TODO batなどの処理名がない呼び出しの場合、呼び出しロジックから呼び出し構文への変換時に #dummy的な処理名を付与させる！
         if (analyzeTarget.contains("#")) {
@@ -94,6 +120,12 @@ public class InvokeStatement {
         return invokeType;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param analyzeTarget2 xxx
+     * @return xxx
+     */
     private String getInvokeTargetMethod(String analyzeTarget2) {
         if (! analyzeTarget.contains("(")) {
             throw new SvLayerException("Sv.E0013", new Object[] {"analyzeTarget", "("});
@@ -103,7 +135,7 @@ public class InvokeStatement {
         String method = analyzeTarget.split("#")[1];
 
         // MethodName(ArgType1, ArgType2) → MethodName
-        method = method.split("(")[0];
+        method = method.split("\\(")[0];
 
         // ダミー値が設定されている場合、空文字を返却
         if (METHOD_NAME_DUMMY.equals(method)) {
@@ -113,6 +145,12 @@ public class InvokeStatement {
         return method;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param analyzeTarget xxx
+     * @return xxx
+     */
     private List<String> getArgumentTypeList(String analyzeTarget) {
         if (! analyzeTarget.contains(")")) {
             throw new SvLayerException("Sv.E0013", new Object[] {"analyzeTarget", ")"});
@@ -122,7 +160,7 @@ public class InvokeStatement {
         String argDef = analyzeTarget.split("#")[1];
 
         // MethodName(ArgType1, ArgType2) → ArgType1, ArgType2)
-        argDef = argDef.split("(")[1];
+        argDef = argDef.split("\\(")[1];
 
         // ArgType1, ArgType2) → ArgType1, ArgType2
         argDef = argDef.replace(")", "");

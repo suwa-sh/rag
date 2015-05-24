@@ -7,8 +7,6 @@ import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
-import org.slf4j.Logger;
-
 import me.suwash.ddd.policy.layer.sv.GenericService;
 import me.suwash.rag.infra.Loggable;
 import me.suwash.rag.sv.domain.analyzer.Analyzer;
@@ -16,6 +14,8 @@ import me.suwash.rag.sv.domain.analyzer.AnalyzerInput;
 import me.suwash.rag.sv.service.AnalyzeService;
 import me.suwash.rag.sv.service.AnalyzeServiceInBean;
 import me.suwash.rag.sv.service.AnalyzeServiceOutBean;
+
+import org.slf4j.Logger;
 
 /**
  * 対象から分析IDの判断、ファイル単位の分析。

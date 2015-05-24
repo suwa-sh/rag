@@ -3,11 +3,19 @@ package me.suwash.rag.sv.domain.listener;
 import me.suwash.rag.recognize.java.JavaBaseListener;
 import me.suwash.rag.sv.domain.analyze.AnalyzeWork;
 
+/**
+ * TODO クラスの説明。
+ */
 public class JavaListener extends JavaBaseListener {
-    private AnalyzeWork work;
+//    private AnalyzeWork work;
 
+    /**
+     * コンストラクタ。
+     *
+     * @param work xxx
+     */
     public JavaListener(AnalyzeWork work) {
-        this.work = work;
+//        this.work = work;
     }
 
     // TODO 変数保持

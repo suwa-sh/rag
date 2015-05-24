@@ -191,6 +191,9 @@ public class ContextManagerTest {
         }
     }
 
+    /**
+     * getReplacedPathのテスト。
+     */
     @Ignore
     @Test
     public final void testGetReplacedPath() {
@@ -199,7 +202,7 @@ public class ContextManagerTest {
         AnalyzerOutput output = new AnalyzerOutput();
 
         String expect = "/path/to/workspace/rag/src/main/jp/co/presa/rag/test/Target.java";
-        int expectPathReplaceRuleCount = 3;
+        final int expectPathReplaceRuleCount = 3;
 
         String actual = contextManager.getReplacedPath(analyzeId, target, output);
 

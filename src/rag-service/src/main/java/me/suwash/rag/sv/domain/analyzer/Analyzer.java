@@ -12,5 +12,5 @@ public interface Analyzer {
      * @param input 入力データ
      * @return 出力データ
      */
-    abstract public AnalyzerOutput analyze(AnalyzerInput input);
+    public abstract AnalyzerOutput analyze(AnalyzerInput input);
 }
