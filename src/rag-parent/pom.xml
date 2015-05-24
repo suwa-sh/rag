@@ -85,8 +85,15 @@
     </distributionManagement>
 
     <build>
-        <!-- <extensions> <extension> <groupId>me.suwash</groupId> <artifactId>checks</artifactId>
-            <version>0.1.0</version> </extension> </extensions> -->
+        <extensions>
+            <!-- check rule -->
+            <extension>
+                <groupId>me.suwash</groupId>
+                <artifactId>checks</artifactId>
+                <version>0.1.0</version>
+            </extension>
+        </extensions>
+
         <plugins>
             <!-- Compiler -->
             <plugin>
