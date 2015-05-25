@@ -69,12 +69,29 @@
             <id>me.suwash</id>
             <name>me.suwash Repository</name>
             <url>https://github.com/suwa-sh/mvn-repo/raw/master/</url>
-            <snapshots>
+            <releases>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>me.suwash</id>
+            <name>me.suwash Repository</name>
+            <url>https://github.com/suwa-sh/mvn-repo/raw/master/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <distributionManagement>
         <repository>
