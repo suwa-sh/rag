@@ -136,7 +136,7 @@ public class AnalyzerImpl implements Analyzer {
         // TODO ContextManager#operationMathingを実行
         // 呼び出し文、引数からデータストア操作にマッチング
         // マッチした場合、AnalyzeWorkにCSV出力の元データを追加して、analyzeをここで終了
-        return null;
+        return output;
     }
 
     /**
