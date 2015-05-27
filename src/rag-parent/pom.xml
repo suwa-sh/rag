@@ -210,6 +210,11 @@
                         <version>0.1.0</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <excludes>
+                        **/src/test/java/**/*.java,**/target/**,**/.*,
+                    </excludes>
+                </configuration>
             </plugin>
             <!-- Cobertura -->
             <plugin>
@@ -531,7 +536,7 @@
                     <enableRulesSummary>false</enableRulesSummary>
                     <consoleOutput>true</consoleOutput>
                     <excludes>
-                        **/src/test/java/**/*.java
+                        **/src/test/java/**/*.java,**/target/**,**/.*,
                     </excludes>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <configLocation>checkstyle/checkstyle.xml</configLocation>

@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 //import me.suwash.rag.rag.recognize.java.JavaLexer;
 //import me.suwash.rag.rag.recognize.java.JavaParser;
 
+/**
+ * TODO クラスの説明。
+ */
 @Component("processor")
 @Scope("step")
 public class ExampleProcessor implements ItemProcessor<ExampleInDto, ExampleOutDto> {
@@ -23,6 +26,12 @@ public class ExampleProcessor implements ItemProcessor<ExampleInDto, ExampleOutD
 //            "    }" +
 //            "}";
 
+    /**
+     * TODO メソッドの説明。
+     *
+     * @param item xxx
+     * @return xxx
+     */
     public ExampleOutDto process(ExampleInDto item) {
 //        // 文字列を解析
 //        String replacedValue = trgValue.replaceAll("\\Q${item.value1}\\E", item.getValue1());

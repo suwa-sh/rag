@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Dummy {@link ItemWriter} which only logs data it receives.
+ * TODO クラスの説明。
  */
 @Component("writer")
 @Scope("step")
@@ -19,7 +19,10 @@ public class ExampleItemWriter implements ItemWriter<ExampleOutDto> {
     private static final Log log = LogFactory.getLog(ExampleItemWriter.class);
 
     /**
-     * @see ItemWriter#write(java.util.List)
+     * TODO メソッドの説明。
+     *
+     * @param data xxx
+     * @throws Exception xxx
      */
     public void write(List<? extends ExampleOutDto> data) throws Exception {
         log.info(data);

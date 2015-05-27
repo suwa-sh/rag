@@ -10,28 +10,28 @@ import me.suwash.util.classification.Classification;
  * エラー時の制御区分。
  */
 public enum OnErrorOperation implements Classification {
-    /** 中止 */
+    /** 中止。 */
     Abort("ABT"),
-    /** スキップ */
+    /** スキップ。 */
     Skip("SKP");
 
-    /** グループ名配列 */
+    /** グループ名配列。 */
     private static final String[] groups;
-    /** 区分値グループMap */
+    /** 区分値グループMap。 */
     private static final Map<String, OnErrorOperation[]> groupValuesMap;
-    /** グループ内デフォルト区分値Map */
+    /** グループ内デフォルト区分値Map。 */
     private static final Map<String, OnErrorOperation> groupDefaultMap;
 
-    /** グループ：デフォルト */
+    /** グループ：デフォルト。 */
     public static final String GROUP_DEFAULT = "default";
 
     static {
         // グループMap
         groupValuesMap = new HashMap<String, OnErrorOperation[]>();
-        groupValuesMap.put(GROUP_DEFAULT, new OnErrorOperation[]{
+        groupValuesMap.put(GROUP_DEFAULT, new OnErrorOperation[] {
             Abort,
             Skip
-            });
+        });
 
         // グループ内デフォルト値Map
         groupDefaultMap = new HashMap<String, OnErrorOperation>();
@@ -62,6 +62,7 @@ public enum OnErrorOperation implements Classification {
 
     /**
      * 区分が持つグループ群を返します。
+     *
      * @return グループ名配列
      */
     public static String[] groups() {
@@ -70,6 +71,7 @@ public enum OnErrorOperation implements Classification {
 
     /**
      * 指定したグループ名に属する区分値を返します。
+     *
      * @param group グループ名
      * @return 区分値配列
      */
@@ -86,7 +88,7 @@ public enum OnErrorOperation implements Classification {
      */
     public static OnErrorOperation valueOfByDdId(String ddId) {
         for (OnErrorOperation curEnum : OnErrorOperation.values()) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return curEnum;
             }
         }
@@ -102,7 +104,7 @@ public enum OnErrorOperation implements Classification {
      */
     public static OnErrorOperation valueOfByStoreValue(String storeValue) {
         for (OnErrorOperation curEnum : OnErrorOperation.values()) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return curEnum;
             }
         }
@@ -117,7 +119,7 @@ public enum OnErrorOperation implements Classification {
      */
     public static boolean containsName(String name) {
         for (OnErrorOperation curEnum : OnErrorOperation.values()) {
-            if(curEnum.name().equals(name)) {
+            if (curEnum.name().equals(name)) {
                 return true;
             }
         }
@@ -133,7 +135,7 @@ public enum OnErrorOperation implements Classification {
      */
     public static boolean containsName(String group, String name) {
         for (OnErrorOperation curEnum : OnErrorOperation.values(group)) {
-            if(curEnum.name().equals(name)) {
+            if (curEnum.name().equals(name)) {
                 return true;
             }
         }
@@ -148,7 +150,7 @@ public enum OnErrorOperation implements Classification {
      */
     public static boolean containsDdId(String ddId) {
         for (OnErrorOperation curEnum : OnErrorOperation.values()) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
         }
@@ -164,7 +166,7 @@ public enum OnErrorOperation implements Classification {
      */
     public static boolean containsDdId(String group, String ddId) {
         for (OnErrorOperation curEnum : OnErrorOperation.values(group)) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
         }
@@ -179,7 +181,7 @@ public enum OnErrorOperation implements Classification {
      */
     public static boolean containsStoreValue(String storeValue) {
         for (OnErrorOperation curEnum : OnErrorOperation.values()) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
         }
@@ -195,17 +197,16 @@ public enum OnErrorOperation implements Classification {
      */
     public static boolean containsStoreValue(String group, String storeValue) {
         for (OnErrorOperation curEnum : OnErrorOperation.values(group)) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
         }
         return false;
     }
 
-
-    /** データディクショナリID */
+    /** データディクショナリID。 */
     private String ddId;
-    /** 永続化値 */
+    /** 永続化値。 */
     private String storeValue;
 
     /**
@@ -218,7 +219,8 @@ public enum OnErrorOperation implements Classification {
         this.storeValue = storeValue;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see me.suwash.util.classification.Classification#ddId()
      */
     @Override
@@ -226,7 +228,8 @@ public enum OnErrorOperation implements Classification {
         return ddId;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see me.suwash.util.classification.Classification#storeValue()
      */
     @Override
@@ -234,7 +237,8 @@ public enum OnErrorOperation implements Classification {
         return storeValue;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see java.lang.Enum#toString()
      */
     @Override
@@ -242,4 +246,3 @@ public enum OnErrorOperation implements Classification {
         return ddId() + "(" + storeValue() + ")";
     }
 }
-

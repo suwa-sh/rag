@@ -10,34 +10,34 @@ import me.suwash.util.classification.Classification;
  * データストア操作区分。
  */
 public enum DataStoreOperation implements Classification {
-    /** 作成 */
+    /** 作成。 */
     Create("CRE"),
-    /** 読込 */
+    /** 読込。 */
     Read("REA"),
-    /** 更新 */
+    /** 更新。 */
     Update("UPD"),
-    /** 削除 */
+    /** 削除。 */
     Delete("DEL");
 
-    /** グループ名配列 */
+    /** グループ名配列。 */
     private static final String[] groups;
-    /** 区分値グループMap */
+    /** 区分値グループMap。 */
     private static final Map<String, DataStoreOperation[]> groupValuesMap;
-    /** グループ内デフォルト区分値Map */
+    /** グループ内デフォルト区分値Map。 */
     private static final Map<String, DataStoreOperation> groupDefaultMap;
 
-    /** グループ：デフォルト */
+    /** グループ：デフォルト。 */
     public static final String GROUP_DEFAULT = "default";
 
     static {
         // グループMap
         groupValuesMap = new HashMap<String, DataStoreOperation[]>();
-        groupValuesMap.put(GROUP_DEFAULT, new DataStoreOperation[]{
+        groupValuesMap.put(GROUP_DEFAULT, new DataStoreOperation[] {
             Create,
             Read,
             Update,
             Delete
-            });
+        });
 
         // グループ内デフォルト値Map
         groupDefaultMap = new HashMap<String, DataStoreOperation>();
@@ -68,6 +68,7 @@ public enum DataStoreOperation implements Classification {
 
     /**
      * 区分が持つグループ群を返します。
+     *
      * @return グループ名配列
      */
     public static String[] groups() {
@@ -76,6 +77,7 @@ public enum DataStoreOperation implements Classification {
 
     /**
      * 指定したグループ名に属する区分値を返します。
+     *
      * @param group グループ名
      * @return 区分値配列
      */
@@ -92,7 +94,7 @@ public enum DataStoreOperation implements Classification {
      */
     public static DataStoreOperation valueOfByDdId(String ddId) {
         for (DataStoreOperation curEnum : DataStoreOperation.values()) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return curEnum;
             }
         }
@@ -108,7 +110,7 @@ public enum DataStoreOperation implements Classification {
      */
     public static DataStoreOperation valueOfByStoreValue(String storeValue) {
         for (DataStoreOperation curEnum : DataStoreOperation.values()) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return curEnum;
             }
         }
@@ -123,7 +125,7 @@ public enum DataStoreOperation implements Classification {
      */
     public static boolean containsName(String name) {
         for (DataStoreOperation curEnum : DataStoreOperation.values()) {
-            if(curEnum.name().equals(name)) {
+            if (curEnum.name().equals(name)) {
                 return true;
             }
         }
@@ -139,7 +141,7 @@ public enum DataStoreOperation implements Classification {
      */
     public static boolean containsName(String group, String name) {
         for (DataStoreOperation curEnum : DataStoreOperation.values(group)) {
-            if(curEnum.name().equals(name)) {
+            if (curEnum.name().equals(name)) {
                 return true;
             }
         }
@@ -154,7 +156,7 @@ public enum DataStoreOperation implements Classification {
      */
     public static boolean containsDdId(String ddId) {
         for (DataStoreOperation curEnum : DataStoreOperation.values()) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
         }
@@ -170,7 +172,7 @@ public enum DataStoreOperation implements Classification {
      */
     public static boolean containsDdId(String group, String ddId) {
         for (DataStoreOperation curEnum : DataStoreOperation.values(group)) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
         }
@@ -185,7 +187,7 @@ public enum DataStoreOperation implements Classification {
      */
     public static boolean containsStoreValue(String storeValue) {
         for (DataStoreOperation curEnum : DataStoreOperation.values()) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
         }
@@ -201,17 +203,16 @@ public enum DataStoreOperation implements Classification {
      */
     public static boolean containsStoreValue(String group, String storeValue) {
         for (DataStoreOperation curEnum : DataStoreOperation.values(group)) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
         }
         return false;
     }
 
-
-    /** データディクショナリID */
+    /** データディクショナリID。 */
     private String ddId;
-    /** 永続化値 */
+    /** 永続化値。 */
     private String storeValue;
 
     /**
@@ -224,7 +225,8 @@ public enum DataStoreOperation implements Classification {
         this.storeValue = storeValue;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see me.suwash.util.classification.Classification#ddId()
      */
     @Override
@@ -232,7 +234,8 @@ public enum DataStoreOperation implements Classification {
         return ddId;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see me.suwash.util.classification.Classification#storeValue()
      */
     @Override
@@ -240,7 +243,8 @@ public enum DataStoreOperation implements Classification {
         return storeValue;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see java.lang.Enum#toString()
      */
     @Override
@@ -248,4 +252,3 @@ public enum DataStoreOperation implements Classification {
         return ddId() + "(" + storeValue() + ")";
     }
 }
-

@@ -10,31 +10,31 @@ import me.suwash.util.classification.Classification;
  * 引数タイプ。
  */
 public enum ArgumentType implements Classification {
-    /** 番号指定 */
+    /** 番号指定。 */
     Number("NUM"),
-    /** 名前指定 */
+    /** 名前指定。 */
     Name("NAM"),
-    /** 引数なし */
+    /** 引数なし。 */
     None("NON");
 
-    /** グループ名配列 */
+    /** グループ名配列。 */
     private static final String[] groups;
-    /** 区分値グループMap */
+    /** 区分値グループMap。 */
     private static final Map<String, ArgumentType[]> groupValuesMap;
-    /** グループ内デフォルト区分値Map */
+    /** グループ内デフォルト区分値Map。 */
     private static final Map<String, ArgumentType> groupDefaultMap;
 
-    /** グループ：デフォルト */
+    /** グループ：デフォルト。 */
     public static final String GROUP_DEFAULT = "default";
 
     static {
         // グループMap
         groupValuesMap = new HashMap<String, ArgumentType[]>();
-        groupValuesMap.put(GROUP_DEFAULT, new ArgumentType[]{
+        groupValuesMap.put(GROUP_DEFAULT, new ArgumentType[] {
             Number,
             Name,
             None
-            });
+        });
 
         // グループ内デフォルト値Map
         groupDefaultMap = new HashMap<String, ArgumentType>();
@@ -65,6 +65,7 @@ public enum ArgumentType implements Classification {
 
     /**
      * 区分が持つグループ群を返します。
+     *
      * @return グループ名配列
      */
     public static String[] groups() {
@@ -73,6 +74,7 @@ public enum ArgumentType implements Classification {
 
     /**
      * 指定したグループ名に属する区分値を返します。
+     *
      * @param group グループ名
      * @return 区分値配列
      */
@@ -89,7 +91,7 @@ public enum ArgumentType implements Classification {
      */
     public static ArgumentType valueOfByDdId(String ddId) {
         for (ArgumentType curEnum : ArgumentType.values()) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return curEnum;
             }
         }
@@ -105,7 +107,7 @@ public enum ArgumentType implements Classification {
      */
     public static ArgumentType valueOfByStoreValue(String storeValue) {
         for (ArgumentType curEnum : ArgumentType.values()) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return curEnum;
             }
         }
@@ -120,7 +122,7 @@ public enum ArgumentType implements Classification {
      */
     public static boolean containsName(String name) {
         for (ArgumentType curEnum : ArgumentType.values()) {
-            if(curEnum.name().equals(name)) {
+            if (curEnum.name().equals(name)) {
                 return true;
             }
         }
@@ -136,7 +138,7 @@ public enum ArgumentType implements Classification {
      */
     public static boolean containsName(String group, String name) {
         for (ArgumentType curEnum : ArgumentType.values(group)) {
-            if(curEnum.name().equals(name)) {
+            if (curEnum.name().equals(name)) {
                 return true;
             }
         }
@@ -151,7 +153,7 @@ public enum ArgumentType implements Classification {
      */
     public static boolean containsDdId(String ddId) {
         for (ArgumentType curEnum : ArgumentType.values()) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
         }
@@ -167,7 +169,7 @@ public enum ArgumentType implements Classification {
      */
     public static boolean containsDdId(String group, String ddId) {
         for (ArgumentType curEnum : ArgumentType.values(group)) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
         }
@@ -182,7 +184,7 @@ public enum ArgumentType implements Classification {
      */
     public static boolean containsStoreValue(String storeValue) {
         for (ArgumentType curEnum : ArgumentType.values()) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
         }
@@ -198,17 +200,16 @@ public enum ArgumentType implements Classification {
      */
     public static boolean containsStoreValue(String group, String storeValue) {
         for (ArgumentType curEnum : ArgumentType.values(group)) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
         }
         return false;
     }
 
-
-    /** データディクショナリID */
+    /** データディクショナリID。 */
     private String ddId;
-    /** 永続化値 */
+    /** 永続化値。 */
     private String storeValue;
 
     /**
@@ -221,7 +222,8 @@ public enum ArgumentType implements Classification {
         this.storeValue = storeValue;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see me.suwash.util.classification.Classification#ddId()
      */
     @Override
@@ -229,7 +231,8 @@ public enum ArgumentType implements Classification {
         return ddId;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see me.suwash.util.classification.Classification#storeValue()
      */
     @Override
@@ -237,7 +240,8 @@ public enum ArgumentType implements Classification {
         return storeValue;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see java.lang.Enum#toString()
      */
     @Override
@@ -245,4 +249,3 @@ public enum ArgumentType implements Classification {
         return ddId() + "(" + storeValue() + ")";
     }
 }
-
