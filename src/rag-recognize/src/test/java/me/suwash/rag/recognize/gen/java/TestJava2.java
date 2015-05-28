@@ -1,4 +1,4 @@
-package me.suwash.rag.recognize.java;
+package me.suwash.rag.recognize.gen.java;
 
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CommonTokenStream;

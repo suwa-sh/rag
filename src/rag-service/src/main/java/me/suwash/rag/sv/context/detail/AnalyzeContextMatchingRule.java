@@ -12,81 +12,163 @@ import org.apache.commons.lang.StringUtils;
  */
 public class AnalyzeContextMatchingRule extends BaseRule {
 
-    /** 分析コンテキストマッチングモード */
+    /** 分析コンテキストマッチングモード。 */
     private AnalyzeContextMatchingMode matchingMode;
 
-    /** 分析ID */
+    /** 分析ID。 */
     private String analyzeId;
 
     // --------------------------------------------------
-    //  拡張子指定
+    // 拡張子指定
     // --------------------------------------------------
-    /** 拡張子 */
+    /** 拡張子。 */
     private String extention;
 
     // --------------------------------------------------
-    //  呼び出し元指定
+    // 呼び出し元指定
     // --------------------------------------------------
-    /** 呼び出し元指定キー */
+    /** 呼び出し元指定キー。 */
     private String invokerKey;
-    /** 引数タイプ */
+    /** 引数タイプ。 */
     private ArgumentType argumentType;
 
-    /** 対象ディレクトリ指定キー */
+    /** 対象ディレクトリ指定キー。 */
     private String targetDirArgKey;
-    /** 対象ファイル指定キー */
+    /** 対象ファイル指定キー。 */
     private String targetFileArgKey;
 
+    /**
+     * matchingModeを返します。
+     *
+     * @return matchingMode
+     */
     public AnalyzeContextMatchingMode getMatchingMode() {
-        return matchingMode;
+        return this.matchingMode;
     }
+
+    /**
+     * matchingModeを設定します。
+     *
+     * @param matchingMode matchingMode
+     */
     public void setMatchingMode(AnalyzeContextMatchingMode matchingMode) {
         this.matchingMode = matchingMode;
     }
 
-
+    /**
+     * analyzeIdを返します。
+     *
+     * @return analyzeId
+     */
     public String getAnalyzeId() {
-        return analyzeId;
+        return this.analyzeId;
     }
+
+    /**
+     * analyzeIdを設定します。
+     *
+     * @param analyzeId analyzeId
+     */
     public void setAnalyzeId(String analyzeId) {
         this.analyzeId = analyzeId;
     }
 
+    /**
+     * extentionを返します。
+     *
+     * @return extention
+     */
     public String getExtention() {
-        return extention;
+        return this.extention;
     }
+
+    /**
+     * extentionを設定します。
+     *
+     * @param extention extention
+     */
     public void setExtention(String extention) {
         this.extention = extention;
     }
 
+    /**
+     * invokerKeyを返します。
+     *
+     * @return invokerKey
+     */
     public String getInvokerKey() {
-        return invokerKey;
+        return this.invokerKey;
     }
+
+    /**
+     * invokerKeyを設定します。
+     *
+     * @param invokerKey invokerKey
+     */
     public void setInvokerKey(String invokerKey) {
         this.invokerKey = invokerKey;
     }
 
+    /**
+     * argumentTypeを返します。
+     *
+     * @return argumentType
+     */
     public ArgumentType getArgumentType() {
-        return argumentType;
+        return this.argumentType;
     }
+
+    /**
+     * argumentTypeを設定します。
+     *
+     * @param argumentType argumentType
+     */
     public void setArgumentType(ArgumentType argumentType) {
         this.argumentType = argumentType;
     }
 
+    /**
+     * targetDirArgKeyを返します。
+     *
+     * @return targetDirArgKey
+     */
     public String getTargetDirArgKey() {
-        return targetDirArgKey;
+        return this.targetDirArgKey;
     }
+
+    /**
+     * targetDirArgKeyを設定します。
+     *
+     * @param targetDirArgKey targetDirArgKey
+     */
     public void setTargetDirArgKey(String targetDirArgKey) {
         this.targetDirArgKey = targetDirArgKey;
     }
 
+    /**
+     * targetFileArgKeyを返します。
+     *
+     * @return targetFileArgKey
+     */
     public String getTargetFileArgKey() {
-        return targetFileArgKey;
+        return this.targetFileArgKey;
     }
+
+    /**
+     * targetFileArgKeyを設定します。
+     *
+     * @param targetFileArgKey targetFileArgKey
+     */
     public void setTargetFileArgKey(String targetFileArgKey) {
         this.targetFileArgKey = targetFileArgKey;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param target xxx
+     * @return String
+     */
     public String getMatchedAnalyzeId(String target) {
         // 引数チェック
         if (StringUtils.isEmpty(target)) {
@@ -115,6 +197,13 @@ public class AnalyzeContextMatchingRule extends BaseRule {
         // マッチしなかった場合、空文字を返却
         return StringUtils.EMPTY;
     }
+
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param filePath xxx
+     * @return String
+     */
     private String getExtention(String filePath) {
         String ext = StringUtils.EMPTY;
 

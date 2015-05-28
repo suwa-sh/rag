@@ -10,35 +10,35 @@ import me.suwash.util.classification.Classification;
  * 分析フェーズ。
  */
 public enum AnalyzePhase implements Classification {
-    /** コンテキストマッチング */
+    /** コンテキストマッチング。 */
     ContextMatching("CTM"),
-    /** 入力チェック */
+    /** 入力チェック。 */
     Validate("VLD"),
-    /** 操作マッチング */
+    /** 操作マッチング。 */
     OperationMatching("OPM"),
-    /** パス置換 */
+    /** パス置換。 */
     ReplacePath("REP"),
-    /** パース */
+    /** パース。 */
     Parse("PRS"),
-    /** 走査 */
+    /** 走査。 */
     Walk("WLK"),
-    /** 完了 */
+    /** 完了。 */
     Finished("Fin");
 
-    /** グループ名配列 */
+    /** グループ名配列。 */
     private static final String[] groups;
-    /** 区分値グループMap */
+    /** 区分値グループMap。 */
     private static final Map<String, AnalyzePhase[]> groupValuesMap;
-    /** グループ内デフォルト区分値Map */
+    /** グループ内デフォルト区分値Map。 */
     private static final Map<String, AnalyzePhase> groupDefaultMap;
 
-    /** グループ：デフォルト */
+    /** グループ：デフォルト。 */
     public static final String GROUP_DEFAULT = "default";
 
     static {
         // グループMap
         groupValuesMap = new HashMap<String, AnalyzePhase[]>();
-        groupValuesMap.put(GROUP_DEFAULT, new AnalyzePhase[]{
+        groupValuesMap.put(GROUP_DEFAULT, new AnalyzePhase[] {
             ContextMatching,
             Validate,
             OperationMatching,
@@ -46,7 +46,7 @@ public enum AnalyzePhase implements Classification {
             Parse,
             Walk,
             Finished
-            });
+        });
 
         // グループ内デフォルト値Map
         groupDefaultMap = new HashMap<String, AnalyzePhase>();
@@ -77,6 +77,7 @@ public enum AnalyzePhase implements Classification {
 
     /**
      * 区分が持つグループ群を返します。
+     *
      * @return グループ名配列
      */
     public static String[] groups() {
@@ -85,6 +86,7 @@ public enum AnalyzePhase implements Classification {
 
     /**
      * 指定したグループ名に属する区分値を返します。
+     *
      * @param group グループ名
      * @return 区分値配列
      */
@@ -101,7 +103,7 @@ public enum AnalyzePhase implements Classification {
      */
     public static AnalyzePhase valueOfByDdId(String ddId) {
         for (AnalyzePhase curEnum : AnalyzePhase.values()) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return curEnum;
             }
         }
@@ -117,7 +119,7 @@ public enum AnalyzePhase implements Classification {
      */
     public static AnalyzePhase valueOfByStoreValue(String storeValue) {
         for (AnalyzePhase curEnum : AnalyzePhase.values()) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return curEnum;
             }
         }
@@ -132,7 +134,7 @@ public enum AnalyzePhase implements Classification {
      */
     public static boolean containsName(String name) {
         for (AnalyzePhase curEnum : AnalyzePhase.values()) {
-            if(curEnum.name().equals(name)) {
+            if (curEnum.name().equals(name)) {
                 return true;
             }
         }
@@ -148,7 +150,7 @@ public enum AnalyzePhase implements Classification {
      */
     public static boolean containsName(String group, String name) {
         for (AnalyzePhase curEnum : AnalyzePhase.values(group)) {
-            if(curEnum.name().equals(name)) {
+            if (curEnum.name().equals(name)) {
                 return true;
             }
         }
@@ -163,7 +165,7 @@ public enum AnalyzePhase implements Classification {
      */
     public static boolean containsDdId(String ddId) {
         for (AnalyzePhase curEnum : AnalyzePhase.values()) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
         }
@@ -179,7 +181,7 @@ public enum AnalyzePhase implements Classification {
      */
     public static boolean containsDdId(String group, String ddId) {
         for (AnalyzePhase curEnum : AnalyzePhase.values(group)) {
-            if(curEnum.ddId().equals(ddId)) {
+            if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
         }
@@ -194,7 +196,7 @@ public enum AnalyzePhase implements Classification {
      */
     public static boolean containsStoreValue(String storeValue) {
         for (AnalyzePhase curEnum : AnalyzePhase.values()) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
         }
@@ -210,17 +212,16 @@ public enum AnalyzePhase implements Classification {
      */
     public static boolean containsStoreValue(String group, String storeValue) {
         for (AnalyzePhase curEnum : AnalyzePhase.values(group)) {
-            if(curEnum.storeValue().equals(storeValue)) {
+            if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
         }
         return false;
     }
 
-
-    /** データディクショナリID */
+    /** データディクショナリID。 */
     private String ddId;
-    /** 永続化値 */
+    /** 永続化値。 */
     private String storeValue;
 
     /**
@@ -233,7 +234,8 @@ public enum AnalyzePhase implements Classification {
         this.storeValue = storeValue;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see me.suwash.util.classification.Classification#ddId()
      */
     @Override
@@ -241,7 +243,8 @@ public enum AnalyzePhase implements Classification {
         return ddId;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see me.suwash.util.classification.Classification#storeValue()
      */
     @Override
@@ -249,7 +252,8 @@ public enum AnalyzePhase implements Classification {
         return storeValue;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see java.lang.Enum#toString()
      */
     @Override
@@ -257,4 +261,3 @@ public enum AnalyzePhase implements Classification {
         return ddId() + "(" + storeValue() + ")";
     }
 }
-

@@ -22,6 +22,11 @@ public class ExampleItemReader implements ItemReader<ExampleInDto> {
 
     private int index = 0;
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param index xxx
+     */
     @Value("#{jobParameters['index']}")
     public void setIndex(int index) {
         System.out.println("index:" + index + " から処理を開始します。");
@@ -30,6 +35,11 @@ public class ExampleItemReader implements ItemReader<ExampleInDto> {
 
     private Date startDatetime;
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param startDatetime xxx
+     */
     @Value("#{jobParameters['startDatetime']}")
     public void setStartDatetime(String startDatetime) {
         try {
@@ -41,7 +51,10 @@ public class ExampleItemReader implements ItemReader<ExampleInDto> {
     }
 
     /**
-     * Reads next record from input
+     * Reads next record from input.
+     *
+     * @return xxx
+     * @throws Exception xxx
      */
     public ExampleInDto read() throws Exception {
         // TODO 引数のタイムスタンプを利用して何かする

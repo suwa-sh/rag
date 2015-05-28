@@ -7,22 +7,31 @@ import org.springframework.stereotype.Component;
 //import me.suwash.rag.rag.recognize.java.JavaLexer;
 //import me.suwash.rag.rag.recognize.java.JavaParser;
 
+/**
+ * TODO クラスの説明。
+ */
 @Component("processor")
 @Scope("step")
 public class ExampleProcessor implements ItemProcessor<ExampleInDto, ExampleOutDto> {
 
-    private static final String trgValue =
-            "public class Sample {" +
-            "    private final String CONST_XXX = \"XXX\";" +
-            "" +
-            "    public static void main(String[] args) {" +
-            "        String path = \"${item.value1}\";" +
-            "        SampleWalker walker = new SampleWalker();" +
-            "        System.out.println(\"this is sample.\" + i);" +
-            "        walker.walk();" +
-            "    }" +
-            "}";
+//    private static final String trgValue =
+//            "public class Sample {" +
+//            "    private final String CONST_XXX = \"XXX\";" +
+//            "" +
+//            "    public static void main(String[] args) {" +
+//            "        String path = \"${item.value1}\";" +
+//            "        SampleWalker walker = new SampleWalker();" +
+//            "        System.out.println(\"this is sample.\" + i);" +
+//            "        walker.walk();" +
+//            "    }" +
+//            "}";
 
+    /**
+     * TODO メソッドの説明。
+     *
+     * @param item xxx
+     * @return xxx
+     */
     public ExampleOutDto process(ExampleInDto item) {
 //        // 文字列を解析
 //        String replacedValue = trgValue.replaceAll("\\Q${item.value1}\\E", item.getValue1());

@@ -17,10 +17,26 @@ import org.springframework.util.ReflectionUtils.FieldCallback;
 @Named
 public class LoggableInjector implements BeanPostProcessor {
 
+    /**
+     * TODO メソッドの説明。
+     *
+     * @param bean xxx
+     * @param beanName xxx
+     * @return xxx
+     * @throws BeansException xxx
+     */
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         return bean;
     }
 
+    /**
+     * TODO メソッドの説明。
+     *
+     * @param bean xxx
+     * @param beanName xxx
+     * @return xxx
+     * @throws BeansException xxx
+     */
     public Object postProcessBeforeInitialization(final Object bean, String beanName) throws BeansException {
         ReflectionUtils.doWithFields(bean.getClass(), new FieldCallback() {
             public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {

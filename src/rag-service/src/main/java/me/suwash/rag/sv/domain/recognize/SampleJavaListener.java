@@ -3,12 +3,12 @@ package me.suwash.rag.sv.domain.recognize;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.suwash.rag.recognize.java.JavaBaseListener;
-import me.suwash.rag.recognize.java.JavaParser.ExpressionContext;
-import me.suwash.rag.recognize.java.JavaParser.FieldDeclarationContext;
-import me.suwash.rag.recognize.java.JavaParser.ImportDeclarationContext;
-import me.suwash.rag.recognize.java.JavaParser.LocalVariableDeclarationContext;
-import me.suwash.rag.recognize.java.JavaParser.QualifiedNameContext;
+import me.suwash.rag.recognize.gen.java.JavaBaseListener;
+import me.suwash.rag.recognize.gen.java.JavaParser.ExpressionContext;
+import me.suwash.rag.recognize.gen.java.JavaParser.FieldDeclarationContext;
+import me.suwash.rag.recognize.gen.java.JavaParser.ImportDeclarationContext;
+import me.suwash.rag.recognize.gen.java.JavaParser.LocalVariableDeclarationContext;
+import me.suwash.rag.recognize.gen.java.JavaParser.QualifiedNameContext;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -16,14 +16,25 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * TODO クラスの説明。
+ */
 public class SampleJavaListener extends JavaBaseListener {
 
     private Map<String, Map<String, String>> varMap;
 
+    /**
+     * コンストラクタ。
+     */
     public SampleJavaListener() {
         varMap = new HashMap<String, Map<String, String>>();
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public Map<String, Map<String, String>> getVarMap() {
         return this.varMap;
     }
@@ -32,7 +43,7 @@ public class SampleJavaListener extends JavaBaseListener {
     public void enterImportDeclaration(ImportDeclarationContext ctx) {
         // TODO 自動生成されたメソッド・スタブ
         for (ParseTree child : ctx.children) {
-            if(child instanceof QualifiedNameContext) {
+            if (child instanceof QualifiedNameContext) {
                 System.out.println("[import]:" + ((QualifiedNameContext) child).getText());
             }
         }
@@ -58,8 +69,9 @@ public class SampleJavaListener extends JavaBaseListener {
         // System.out.println("[ERROR]" + node.getText());
     }
 
-    /* (非 Javadoc)
-     * @see me.suwash.rag.recognize.java.JavaBaseListener#enterExpression(me.suwash.rag.recognize.java.JavaParser.ExpressionContext)
+    /*
+     * (非 Javadoc)
+     * @see me.suwash.rag.recognize.gen.java.JavaBaseListener#enterExpression(me.suwash.rag.recognize.gen.java.JavaParser.ExpressionContext)
      */
     @Override
     public void enterExpression(ExpressionContext ctx) {
@@ -75,16 +87,21 @@ public class SampleJavaListener extends JavaBaseListener {
 
     @Override
     public void enterLocalVariableDeclaration(
-            LocalVariableDeclarationContext ctx) {
+        LocalVariableDeclarationContext ctx) {
         addVarMap(ctx);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param ctx xxx
+     */
     private void addVarMap(ParserRuleContext ctx) {
         System.out.println("・変数定義分解：" + ctx.getText());
 
         // =の位置を確認
         int equalIndex = -1;
-        for (int i = 0 ; i < ctx.getChildCount(); i++) {
+        for (int i = 0; i < ctx.getChildCount(); i++) {
             if ("=".equals(ctx.getChild(i).getText())) {
                 equalIndex = i;
             }
@@ -116,7 +133,7 @@ public class SampleJavaListener extends JavaBaseListener {
             System.out.println("　・skip:" + ctx.getText());
 
         } else {
-            valueDef= varDef.getChild(2).getText();
+            valueDef = varDef.getChild(2).getText();
             if (valueDef.length() > "new".length() && "new".equals(valueDef.substring(0, 3))) {
                 // インスタンス生成式の場合
                 value = valueDef.replaceFirst("new", StringUtils.EMPTY);

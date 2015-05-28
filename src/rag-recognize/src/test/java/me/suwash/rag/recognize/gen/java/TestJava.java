@@ -1,4 +1,4 @@
-package me.suwash.rag.recognize.java;
+package me.suwash.rag.recognize.gen.java;
 
 import java.io.File;
 import java.util.ArrayList;

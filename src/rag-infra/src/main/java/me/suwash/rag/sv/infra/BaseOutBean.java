@@ -7,28 +7,38 @@ import javax.validation.ConstraintViolation;
 import me.suwash.ddd.classification.ProcessStatus;
 import me.suwash.ddd.policy.layer.sv.OutBean;
 
-public class BaseOutBean<IN extends BaseInBean> implements OutBean<IN> {
+/**
+ * TODO クラスの説明。
+ *
+ * @param <InT> xxx
+ */
+public class BaseOutBean<InT extends BaseInBean> implements OutBean<InT> {
 
-    private IN input;
-    private Set<ConstraintViolation<IN>> violationSet;
+    private InT input;
+    private Set<ConstraintViolation<InT>> violationSet;
     private ProcessStatus processStatus;
 
-    protected BaseOutBean(IN input) {
+    /**
+     * コンストラクタ。
+     *
+     * @param input xxx
+     */
+    protected BaseOutBean(InT input) {
         this.input = input;
     }
 
     @Override
-    public IN getInput() {
+    public InT getInput() {
         return input;
     }
 
     @Override
-    public void setViolationSet(Set<ConstraintViolation<IN>> violationSet) {
+    public void setViolationSet(Set<ConstraintViolation<InT>> violationSet) {
         this.violationSet = violationSet;
     }
 
     @Override
-    public Set<ConstraintViolation<IN>> getViolationSet() {
+    public Set<ConstraintViolation<InT>> getViolationSet() {
         return violationSet;
     }
 

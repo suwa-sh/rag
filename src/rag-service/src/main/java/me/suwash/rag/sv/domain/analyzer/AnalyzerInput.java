@@ -1,9 +1,6 @@
 package me.suwash.rag.sv.domain.analyzer;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 import me.suwash.rag.classification.AnalyzeTargetType;
 import me.suwash.rag.sv.domain.analyze.AnalyzeWork;
@@ -13,25 +10,44 @@ import me.suwash.rag.sv.domain.analyze.AnalyzeWork;
  */
 public class AnalyzerInput {
 
-    /** 分析対象タイプ */
+    /** 分析対象タイプ。 */
     @NotNull
     private AnalyzeTargetType analyzeTargetType;
-//    /** 呼び出し構文 */
-//    @NotNull
-//    private InvokeStatement analyzeTarget;
-    /** 分析作業オブジェクト */
+    // /** 呼び出し構文 */
+    // @NotNull
+    // private InvokeStatement analyzeTarget;
+    /** 分析作業オブジェクト。 */
     @NotNull
     private AnalyzeWork analyzeWork;
-
+    /**
+     * analyzeTargetTypeを返します。
+     *
+     * @return analyzeTargetType
+     */
     public AnalyzeTargetType getAnalyzeTargetType() {
-        return analyzeTargetType;
+        return this.analyzeTargetType;
     }
+    /**
+     * analyzeTargetTypeを設定します。
+     *
+     * @param analyzeTargetType analyzeTargetType
+     */
     public void setAnalyzeTargetType(AnalyzeTargetType analyzeTargetType) {
         this.analyzeTargetType = analyzeTargetType;
     }
+    /**
+     * analyzeWorkを返します。
+     *
+     * @return analyzeWork
+     */
     public AnalyzeWork getAnalyzeWork() {
-        return analyzeWork;
+        return this.analyzeWork;
     }
+    /**
+     * analyzeWorkを設定します。
+     *
+     * @param analyzeWork analyzeWork
+     */
     public void setAnalyzeWork(AnalyzeWork analyzeWork) {
         this.analyzeWork = analyzeWork;
     }

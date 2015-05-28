@@ -11,153 +11,215 @@ import me.suwash.rag.sv.context.detail.PathReplaceRule;
 import me.suwash.util.exception.LayerException;
 
 /**
- * 分析詳細
+ * 分析詳細。
  */
 public class AnalyzeDetail {
 
-    /** 分析ステータス */
+    /** 分析ステータス。 */
     private AnalyzeStatus status;
-    /** 分析フェーズ */
+    /** 分析フェーズ。 */
     private AnalyzePhase phase;
-    /** 分析エラー */
+    /** 分析エラー。 */
     private LayerException exception;
 
-    /** 呼び出し文 */
+    /** 呼び出し文。 */
     private String invokeStatement;
-    /** 適用された分析ID */
+    /** 適用された分析ID。 */
     private String analyzeId;
-    /** 置換後の分析対象ファイルパス */
+    /** 置換後の分析対象ファイルパス。 */
     private String analyzeTargetPath;
 
-    /** 適用された分析コンテキストマッチングルール */
+    /** 適用された分析コンテキストマッチングルール。 */
     private AnalyzeContextMatchingRule analyzeContextMatchingRule;
-    /** 適用されたパス置換ルール */
+    /** 適用されたパス置換ルール。 */
     private List<PathReplaceRule> pathReplaceRuleList;
-    /** 適用されたデータストア操作マッチングルール */
+    /** 適用されたデータストア操作マッチングルール。 */
     private OperationMatchingRule operationMatchingRule;
-    /** 適用されたデータストア操作ルール */
+    /** 適用されたデータストア操作ルール。 */
     private ApplyOperationRule applyOperationRule;
 
+    /**
+     * コンストラクタ。
+     */
     public AnalyzeDetail() {
         status = AnalyzeStatus.Processing;
     }
 
     /**
+     * statusを返します。
+     *
      * @return status
      */
     public AnalyzeStatus getStatus() {
-        return status;
+        return this.status;
     }
+
     /**
-     * @param status セットする status
+     * statusを設定します。
+     *
+     * @param status status
      */
     public void setStatus(AnalyzeStatus status) {
         this.status = status;
     }
+
     /**
+     * phaseを返します。
+     *
      * @return phase
      */
     public AnalyzePhase getPhase() {
-        return phase;
+        return this.phase;
     }
+
     /**
-     * @param phase セットする phase
+     * phaseを設定します。
+     *
+     * @param phase phase
      */
     public void setPhase(AnalyzePhase phase) {
         this.phase = phase;
     }
+
     /**
+     * exceptionを返します。
+     *
      * @return exception
      */
     public LayerException getException() {
-        return exception;
+        return this.exception;
     }
+
     /**
-     * @param exception セットする exception
+     * exceptionを設定します。
+     *
+     * @param exception exception
      */
     public void setException(LayerException exception) {
         this.exception = exception;
     }
+
     /**
+     * invokeStatementを返します。
+     *
      * @return invokeStatement
      */
     public String getInvokeStatement() {
-        return invokeStatement;
+        return this.invokeStatement;
     }
+
     /**
-     * @param invokeStatement セットする invokeStatement
+     * invokeStatementを設定します。
+     *
+     * @param invokeStatement invokeStatement
      */
     public void setInvokeStatement(String invokeStatement) {
         this.invokeStatement = invokeStatement;
     }
+
     /**
-     * @return analyzeTargetPath
-     */
-    public String getAnalyzeTargetPath() {
-        return analyzeTargetPath;
-    }
-    /**
-     * @param analyzeTargetPath セットする analyzeTargetPath
-     */
-    public void setAnalyzeTargetPath(String analyzeTargetPath) {
-        this.analyzeTargetPath = analyzeTargetPath;
-    }
-    /**
+     * analyzeIdを返します。
+     *
      * @return analyzeId
      */
     public String getAnalyzeId() {
-        return analyzeId;
+        return this.analyzeId;
     }
+
     /**
-     * @param analyzeId セットする analyzeId
+     * analyzeIdを設定します。
+     *
+     * @param analyzeId analyzeId
      */
     public void setAnalyzeId(String analyzeId) {
         this.analyzeId = analyzeId;
     }
+
     /**
+     * analyzeTargetPathを返します。
+     *
+     * @return analyzeTargetPath
+     */
+    public String getAnalyzeTargetPath() {
+        return this.analyzeTargetPath;
+    }
+
+    /**
+     * analyzeTargetPathを設定します。
+     *
+     * @param analyzeTargetPath analyzeTargetPath
+     */
+    public void setAnalyzeTargetPath(String analyzeTargetPath) {
+        this.analyzeTargetPath = analyzeTargetPath;
+    }
+
+    /**
+     * analyzeContextMatchingRuleを返します。
+     *
      * @return analyzeContextMatchingRule
      */
     public AnalyzeContextMatchingRule getAnalyzeContextMatchingRule() {
-        return analyzeContextMatchingRule;
+        return this.analyzeContextMatchingRule;
     }
+
     /**
-     * @param analyzeContextMatchingRule セットする analyzeContextMatchingRule
+     * analyzeContextMatchingRuleを設定します。
+     *
+     * @param analyzeContextMatchingRule analyzeContextMatchingRule
      */
     public void setAnalyzeContextMatchingRule(AnalyzeContextMatchingRule analyzeContextMatchingRule) {
         this.analyzeContextMatchingRule = analyzeContextMatchingRule;
     }
+
     /**
+     * pathReplaceRuleListを返します。
+     *
      * @return pathReplaceRuleList
      */
     public List<PathReplaceRule> getPathReplaceRuleList() {
-        return pathReplaceRuleList;
+        return this.pathReplaceRuleList;
     }
+
     /**
-     * @param pathReplaceRuleList セットする pathReplaceRuleList
+     * pathReplaceRuleListを設定します。
+     *
+     * @param pathReplaceRuleList pathReplaceRuleList
      */
     public void setPathReplaceRuleList(List<PathReplaceRule> pathReplaceRuleList) {
         this.pathReplaceRuleList = pathReplaceRuleList;
     }
+
     /**
+     * operationMatchingRuleを返します。
+     *
      * @return operationMatchingRule
      */
     public OperationMatchingRule getOperationMatchingRule() {
-        return operationMatchingRule;
+        return this.operationMatchingRule;
     }
+
     /**
-     * @param operationMatchingRule セットする operationMatchingRule
+     * operationMatchingRuleを設定します。
+     *
+     * @param operationMatchingRule operationMatchingRule
      */
     public void setOperationMatchingRule(OperationMatchingRule operationMatchingRule) {
         this.operationMatchingRule = operationMatchingRule;
     }
+
     /**
+     * applyOperationRuleを返します。
+     *
      * @return applyOperationRule
      */
     public ApplyOperationRule getApplyOperationRule() {
-        return applyOperationRule;
+        return this.applyOperationRule;
     }
+
     /**
-     * @param applyOperationRule セットする applyOperationRule
+     * applyOperationRuleを設定します。
+     *
+     * @param applyOperationRule applyOperationRule
      */
     public void setApplyOperationRule(ApplyOperationRule applyOperationRule) {
         this.applyOperationRule = applyOperationRule;

@@ -28,28 +28,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class ContextManager {
 
-    /** ファイル名：システムコンテキスト */
+    /** ファイル名：システムコンテキスト。 */
     private static final String FILENAME_SYSTEM_CONTEXT = "system_context.json";
-    /** デフォルトコンテキストディレクトリ */
+    /** デフォルトコンテキストディレクトリ。 */
     private static final String DIR_DEFAULT_ANALYZE_CONTEXT = "/context/default";
 
-    /** Singletoneパターン */
+    /** Singletoneパターン。 */
     private static ContextManager instance = new ContextManager();
+
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public static ContextManager getInstance() {
         return instance;
     }
 
-    /** 読み込み済みフラグ */
+    /** 読み込み済みフラグ。 */
     private boolean isLoaded;
-    /** システムコンテキスト */
+    /** システムコンテキスト。 */
     private SystemContext systemContext;
-    /** プロジェクトコンテキスト */
+    /** プロジェクトコンテキスト。 */
     private ProjectContext projectContext;
-    /** デフォルト分析コンテキストMap */
+    /** デフォルト分析コンテキストMap。 */
     private Map<String, AnalyzeContext> defaultAnalyzeContextMap;
-    /** カスタム分析コンテキストMap */
+    /** カスタム分析コンテキストMap。 */
     private Map<String, AnalyzeContext> customAnalyzeContextMap;
-    /** 包含コンテキストListMap */
+    /** 包含コンテキストListMap。 */
     private Map<String, List<AnalyzeContext>> includeAnalyzeContextListMap;
 
     /**
@@ -69,7 +75,7 @@ public class ContextManager {
      */
     public void load(String projectContextFilePath) {
         // ================================================================================
-        //  事前処理
+        // 事前処理
         // ================================================================================
         // --------------------------------------------------------------------------------
         // パース済みチェック
@@ -82,7 +88,9 @@ public class ContextManager {
         // 必須チェック
         // --------------------------------------------------------------------------------
         if (StringUtils.isEmpty(projectContextFilePath)) {
-            throw new SvLayerException("check.notNull", new Object[] {"projectContextPath"});
+            throw new SvLayerException("check.notNull", new Object[] {
+                "projectContextPath"
+            });
         }
 
         // --------------------------------------------------------------------------------
@@ -91,59 +99,70 @@ public class ContextManager {
         // システムコンテキスト
         String systemContextFilePath = this.getClass().getResource("/" + FILENAME_SYSTEM_CONTEXT).getPath();
         File systemContextFile = new File(systemContextFilePath);
-        if (! systemContextFile.isFile()) {
-            throw new SvLayerException("check.notExist", new Object[] {systemContextFile.getAbsolutePath()});
+        if (!systemContextFile.isFile()) {
+            throw new SvLayerException("check.notExist", new Object[] {
+                systemContextFile.getAbsolutePath()
+            });
         }
 
         // プロジェクトコンテキスト
         File projectContextFile = new File(projectContextFilePath);
-        if (! projectContextFile.isFile()) {
-            throw new SvLayerException("check.notExist", new Object[] {projectContextFile.getAbsolutePath()});
+        if (!projectContextFile.isFile()) {
+            throw new SvLayerException("check.notExist", new Object[] {
+                projectContextFile.getAbsolutePath()
+            });
         }
 
         // デフォルト分析コンテキストディレクトリ
         URL defaultAnalyzeContextUrl = this.getClass().getResource(DIR_DEFAULT_ANALYZE_CONTEXT);
         if (defaultAnalyzeContextUrl == null) {
-            throw new SvLayerException("check.notExist", new Object[] {DIR_DEFAULT_ANALYZE_CONTEXT});
+            throw new SvLayerException("check.notExist", new Object[] {
+                DIR_DEFAULT_ANALYZE_CONTEXT
+            });
         }
         String defaultAnalyzeContextDirPath = defaultAnalyzeContextUrl.getPath();
         File defaultAnalyzeContextDir = new File(defaultAnalyzeContextDirPath);
-        if (! defaultAnalyzeContextDir.isDirectory()) {
-            throw new SvLayerException("check.notExist", new Object[] {defaultAnalyzeContextDir.getAbsolutePath()});
+        if (!defaultAnalyzeContextDir.isDirectory()) {
+            throw new SvLayerException("check.notExist", new Object[] {
+                defaultAnalyzeContextDir.getAbsolutePath()
+            });
         }
 
         // --------------------------------------------------------------------------------
-        //  依存オブジェクトの生成
+        // 依存オブジェクトの生成
         // --------------------------------------------------------------------------------
         // ObjectMapper
         ObjectMapper mapper = new ObjectMapper();
 
         // ================================================================================
-        //  本処理
+        // 本処理
         // ================================================================================
         // --------------------------------------------------------------------------------
-        //  システムコンテキストの作成
+        // システムコンテキストの作成
         // --------------------------------------------------------------------------------
         // クラスパス直下からシステムコンテキストをパース
         try {
             systemContext = mapper.readValue(systemContextFile, SystemContext.class);
         } catch (Exception e) {
-            throw new SvLayerException("Sv.E0003", new Object[] {systemContextFile.getAbsolutePath()}, e);
+            throw new SvLayerException("Sv.E0003", new Object[] {
+                systemContextFile.getAbsolutePath()
+            }, e);
         }
 
         // --------------------------------------------------------------------------------
-        //  プロジェクトコンテキストの作成
+        // プロジェクトコンテキストの作成
         // --------------------------------------------------------------------------------
         // 引数のパスからプロジェクトコンテキストをパース
         try {
             projectContext = mapper.readValue(projectContextFile, ProjectContext.class);
         } catch (Exception e) {
-            throw new SvLayerException("Sv.E0003", new Object[] {projectContextFile.getAbsolutePath()}, e);
+            throw new SvLayerException("Sv.E0003", new Object[] {
+                projectContextFile.getAbsolutePath()
+            }, e);
         }
 
-
         // --------------------------------------------------------------------------------
-        //  デフォルト分析コンテキストMapの作成
+        // デフォルト分析コンテキストMapの作成
         // --------------------------------------------------------------------------------
         // デフォルト分析コンテキストファイルを全件ループ
         for (File curAnalyzeContextFile : defaultAnalyzeContextDir.listFiles()) {
@@ -153,29 +172,36 @@ public class ContextManager {
             try {
                 curAnalyzeContext = mapper.readValue(curAnalyzeContextFile, AnalyzeContext.class);
             } catch (Exception e) {
-                throw new SvLayerException("Sv.E0003", new Object[] {curAnalyzeContextFile.getAbsolutePath()}, e);
+                throw new SvLayerException("Sv.E0003", new Object[] {
+                    curAnalyzeContextFile.getAbsolutePath()
+                }, e);
             }
 
             // デフォルト分析コンテキストMapに追加
             if (StringUtils.isEmpty(curAnalyzeContext.getAnalyzeId())) {
-                throw new SvLayerException("Sv.E0004", new Object[] {curAnalyzeContextFile.getAbsolutePath(), "analyzeId"});
+                throw new SvLayerException("Sv.E0004", new Object[] {
+                    curAnalyzeContextFile.getAbsolutePath(), "analyzeId"
+                });
             } else {
                 defaultAnalyzeContextMap.put(curAnalyzeContext.getAnalyzeId(), curAnalyzeContext);
             }
         }
 
-
         // --------------------------------------------------------------------------------
-        //  カスタム分析コンテキストMapの作成
+        // カスタム分析コンテキストMapの作成
         // --------------------------------------------------------------------------------
         // プロジェクトコンテキスト.分析コンテキストディレクトリ
         String customAnalyzeContextDirPath = projectContext.getAnalyzeContextDir();
         if (StringUtils.isEmpty(customAnalyzeContextDirPath)) {
-            throw new SvLayerException("Sv.E0004", new Object[] {projectContextFile.getAbsolutePath(), "analyzeContextDir"});
+            throw new SvLayerException("Sv.E0004", new Object[] {
+                projectContextFile.getAbsolutePath(), "analyzeContextDir"
+            });
         }
         File customAnalyzeContextDir = new File(customAnalyzeContextDirPath);
-        if (! customAnalyzeContextDir.isDirectory()) {
-            throw new SvLayerException("check.notExist", new Object[] {customAnalyzeContextDir.getAbsolutePath()});
+        if (!customAnalyzeContextDir.isDirectory()) {
+            throw new SvLayerException("check.notExist", new Object[] {
+                customAnalyzeContextDir.getAbsolutePath()
+            });
         }
 
         // プロジェクトコンテキスト.分析コンテキストディレクトリのファイルを全件ループ
@@ -186,19 +212,23 @@ public class ContextManager {
             try {
                 curAnalyzeContext = mapper.readValue(curAnalyzeContextFile, AnalyzeContext.class);
             } catch (Exception e) {
-                throw new SvLayerException("Sv.E0003", new Object[] {curAnalyzeContextFile.getAbsolutePath()}, e);
+                throw new SvLayerException("Sv.E0003", new Object[] {
+                    curAnalyzeContextFile.getAbsolutePath()
+                }, e);
             }
 
             // カスタム分析コンテキストMapに追加
             if (StringUtils.isEmpty(curAnalyzeContext.getAnalyzeId())) {
-                throw new SvLayerException("Sv.E0004", new Object[] {curAnalyzeContextFile.getAbsolutePath(), "analyzeId"});
+                throw new SvLayerException("Sv.E0004", new Object[] {
+                    curAnalyzeContextFile.getAbsolutePath(), "analyzeId"
+                });
             } else {
                 customAnalyzeContextMap.put(curAnalyzeContext.getAnalyzeId(), curAnalyzeContext);
             }
         }
 
         // --------------------------------------------------------------------------------
-        //  包含分析コンテキストリストMapの作成
+        // 包含分析コンテキストリストMapの作成
         // --------------------------------------------------------------------------------
         // デフォルト分析コンテキストマップを全件ループ
         for (AnalyzeContext curAnalyzeContext : defaultAnalyzeContextMap.values()) {
@@ -216,19 +246,18 @@ public class ContextManager {
                     } else {
                         // 存在しない場合、エラー
                         throw new SvLayerException("Sv.E0005", new Object[] {
-                                getIncludeListMapKey(AnalyzeContextType.Default, curAnalyzeContext.getAnalyzeId()),
-                                "includeAnalyzeContextIdList",
-                                curIncludeAnalyzeId}
-                        );
+                            getIncludeListMapKey(AnalyzeContextType.Default, curAnalyzeContext.getAnalyzeId()),
+                            "includeAnalyzeContextIdList",
+                            curIncludeAnalyzeId
+                        });
                     }
                 }
             }
 
             // 包含分析コンテキストリストマップに、作成したリストを追加
             includeAnalyzeContextListMap.put(
-                    getIncludeListMapKey(AnalyzeContextType.Default, curAnalyzeContext.getAnalyzeId()),
-                    curIncludeList
-                    );
+                getIncludeListMapKey(AnalyzeContextType.Default, curAnalyzeContext.getAnalyzeId()),
+                curIncludeList);
         }
 
         // カスタム分析コンテキストマップを全件ループ
@@ -247,31 +276,31 @@ public class ContextManager {
                     } else {
                         // 存在しない場合、エラー
                         throw new SvLayerException("Sv.E0005", new Object[] {
-                                getIncludeListMapKey(AnalyzeContextType.Custom, curIncludeAnalyzeId),
-                                "includeAnalyzeContextIdList",
-                                curIncludeAnalyzeId}
-                        );
+                            getIncludeListMapKey(AnalyzeContextType.Custom, curIncludeAnalyzeId),
+                            "includeAnalyzeContextIdList",
+                            curIncludeAnalyzeId
+                        });
                     }
                 }
             }
 
             // 包含分析コンテキストリストマップに、作成したリストを追加
             includeAnalyzeContextListMap.put(
-                    getIncludeListMapKey(AnalyzeContextType.Custom, curAnalyzeContext.getAnalyzeId()),
-                    curIncludeList
-                    );
+                getIncludeListMapKey(AnalyzeContextType.Custom, curAnalyzeContext.getAnalyzeId()),
+                curIncludeList);
         }
 
-
         // ================================================================================
-        //  事後処理
+        // 事後処理
         // ================================================================================
         // パース済みフラグを更新
         isLoaded = true;
     }
 
-    /** ContextManager内部で利用する、分析コンテキスト分類 */
-    private enum AnalyzeContextType { Default, Custom }
+    /** ContextManager内部で利用する、分析コンテキスト分類。 */
+    private enum AnalyzeContextType {
+        Default, Custom
+    }
 
     /**
      * IncludeListMapのキー文字列を返します。
@@ -289,25 +318,25 @@ public class ContextManager {
      * 実行できない場合、例外をスローします。
      */
     private void executeCheck() {
-        if (! isLoaded) {
+        if (!isLoaded) {
             throw new SvLayerException("Sv.E0002");
         }
     }
 
-     /**
-      * 分析深度の上限を取得します。
-      *
-      * @return 分析深度の上限
-      */
+    /**
+     * 分析深度の上限を取得します。
+     *
+     * @return 分析深度の上限
+     */
     public int getAnalyzeDepthLimit() {
         // ================================================================================
-        //  事前処理
+        // 事前処理
         // ================================================================================
         // 実行可否チェック
         executeCheck();
 
         // ================================================================================
-        //  本処理
+        // 本処理
         // ================================================================================
         // プロジェクトコンテキストの設定値を確認
         int returnValue = projectContext.getAnalyzeDepthLimit();
@@ -324,10 +353,12 @@ public class ContextManager {
         }
 
         // ================================================================================
-        //  事後処理
+        // 事後処理
         // ================================================================================
         // 未設定の場合、エラー
-        throw new SvLayerException("Sv.E0011", new Object[] {"analyzeDepthLimit"});
+        throw new SvLayerException("Sv.E0011", new Object[] {
+            "analyzeDepthLimit"
+        });
     }
 
     /**
@@ -337,13 +368,13 @@ public class ContextManager {
      */
     public OnErrorOperation getOnError() {
         // ================================================================================
-        //  事前処理
+        // 事前処理
         // ================================================================================
         // 実行可否チェック
         executeCheck();
 
         // ================================================================================
-        //  本処理
+        // 本処理
         // ================================================================================
         // プロジェクトコンテキストの設定値を確認
         OnErrorOperation returnValue = projectContext.getOnError();
@@ -360,16 +391,17 @@ public class ContextManager {
         }
 
         // ================================================================================
-        //  事後処理
+        // 事後処理
         // ================================================================================
         // 未設定の場合、エラー
-        throw new SvLayerException("Sv.E0011", new Object[] {"onErrorOperation"});
+        throw new SvLayerException("Sv.E0011", new Object[] {
+            "onErrorOperation"
+        });
     }
 
-
-    /** 呼び出し元マッチングルールリスト */
+    /** 呼び出し元マッチングルールリスト。 */
     private List<AnalyzeContextMatchingRule> invokerMatchingRuleList;
-    /** 拡張子マッチングルールリスト */
+    /** 拡張子マッチングルールリスト。 */
     private List<AnalyzeContextMatchingRule> extMatchingRuleList;
 
     /**
@@ -385,18 +417,22 @@ public class ContextManager {
      */
     public String getAnalyzeId(String targetPath, String targetSignature, Stack<Invoker> invokerStack) {
         // ================================================================================
-        //  事前処理
+        // 事前処理
         // ================================================================================
         // 実行可否チェック
         executeCheck();
 
         // 引数チェック
         if (StringUtils.isEmpty(targetPath) && StringUtils.isEmpty(targetSignature)) {
-            throw new SvLayerException("Sv.E0009", new Object[] {"targetPath", "targetSignature"});
+            throw new SvLayerException("Sv.E0009", new Object[] {
+                "targetPath", "targetSignature"
+            });
         }
-        if (! StringUtils.isEmpty(targetSignature)) {
+        if (!StringUtils.isEmpty(targetSignature)) {
             if (invokerStack == null || invokerStack.isEmpty()) {
-                throw new SvLayerException("Sv.E0010", new Object[] {"targetSignature", "invokerStack"});
+                throw new SvLayerException("Sv.E0010", new Object[] {
+                    "targetSignature", "invokerStack"
+                });
             }
         }
 
@@ -430,10 +466,10 @@ public class ContextManager {
         }
 
         // ================================================================================
-        //  本処理
+        // 本処理
         // ================================================================================
         // 呼び出し元スタックの存在確認
-        if (invokerStack != null && ! invokerStack.isEmpty()) {
+        if (invokerStack != null && !invokerStack.isEmpty()) {
             // 呼び出し元でのマッチング
             for (AnalyzeContextMatchingRule invokerMatcingRule : invokerMatchingRuleList) {
                 return invokerMatcingRule.getMatchedAnalyzeId(targetSignature);
@@ -446,7 +482,7 @@ public class ContextManager {
         }
 
         // ================================================================================
-        //  事後処理
+        // 事後処理
         // ================================================================================
         // マッチしない場合、エラー
         throw new SvLayerException("Sv.E0008");
@@ -464,22 +500,25 @@ public class ContextManager {
      */
     public String getReplacedPath(String analyzeId, String target, AnalyzerOutput output) {
         // ================================================================================
-        //  事前処理
+        // 事前処理
         // ================================================================================
         // 実行可否チェック
         executeCheck();
 
         // 必須チェック
         if (StringUtils.isEmpty(analyzeId)) {
-            throw new SvLayerException("check.notNull", new Object[] {"analyzeId"});
+            throw new SvLayerException("check.notNull", new Object[] {
+                "analyzeId"
+            });
         }
         if (StringUtils.isEmpty(target)) {
-            throw new SvLayerException("check.notNull", new Object[] {"target"});
+            throw new SvLayerException("check.notNull", new Object[] {
+                "target"
+            });
         }
 
-
         // ================================================================================
-        //  本処理
+        // 本処理
         // ================================================================================
         List<PathReplaceRule> appliedRuleList = new ArrayList<PathReplaceRule>();
 
@@ -489,14 +528,15 @@ public class ContextManager {
         // デフォルト分析コンテキストでの置換
         replacedValue = getReplacedPath(AnalyzeContextType.Default, analyzeId, replacedValue, appliedRuleList);
 
-
         // ================================================================================
-        //  事後処理
+        // 事後処理
         // ================================================================================
         // 置換結果の確認
         if (target.equals(replacedValue)) {
             // 置換がかからなかった場合、ワーニングを登録
-            output.addWarn(AnalyzePhase.ReplacePath, new SvLayerException("Sv.W0001", new Object[]{target}));
+            output.addWarn(AnalyzePhase.ReplacePath, new SvLayerException("Sv.W0001", new Object[] {
+                target
+            }));
         }
 
         // 適用したルールリストを分析状態に登録
@@ -532,13 +572,13 @@ public class ContextManager {
             AnalyzeContext analyzeContext = contextMap.get(analyzeId);
 
             // ------------------------------------------------------------
-            //  対象コンテキストでの置換
+            // 対象コンテキストでの置換
             // ------------------------------------------------------------
             List<PathReplaceRule> pathReplaceRule = analyzeContext.getPathReplaceRuleList();
             if (pathReplaceRule != null) {
                 for (PathReplaceRule rule : pathReplaceRule) {
                     afterValue = rule.getReplacedPath(beforeValue);
-                    if (! beforeValue.equals(afterValue)) {
+                    if (!beforeValue.equals(afterValue)) {
                         beforeValue = afterValue;
                         // 適用されたルールをリストに追加
                         appliedRuleList.add(rule);
@@ -547,7 +587,7 @@ public class ContextManager {
             }
 
             // ------------------------------------------------------------
-            //  対象コンテキストの包含リストでの置換
+            // 対象コンテキストの包含リストでの置換
             // ------------------------------------------------------------
             String includeListMapKey = getIncludeListMapKey(analyzeContextType, analyzeId);
             if (includeAnalyzeContextListMap.containsKey(includeListMapKey)) {
@@ -558,7 +598,7 @@ public class ContextManager {
                     if (pathReplaceRule != null) {
                         for (PathReplaceRule rule : pathReplaceRule) {
                             afterValue = rule.getReplacedPath(beforeValue);
-                            if (! beforeValue.equals(afterValue)) {
+                            if (!beforeValue.equals(afterValue)) {
                                 beforeValue = afterValue;
                                 // 適用されたルールをリストに追加
                                 appliedRuleList.add(rule);
@@ -571,28 +611,34 @@ public class ContextManager {
         return afterValue;
     }
 
-
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param analyzeId xxx
+     * @return xxx
+     */
     public List<VarEncloseRule> getVarEncloseRuleList(String analyzeId) {
         // ================================================================================
-        //  事前処理
+        // 事前処理
         // ================================================================================
         // 実行可否チェック
         executeCheck();
 
         // 必須チェック
         if (StringUtils.isEmpty(analyzeId)) {
-            throw new SvLayerException("check.notNull", new Object[] {"analyzeId"});
+            throw new SvLayerException("check.notNull", new Object[] {
+                "analyzeId"
+            });
         }
 
-
         // ================================================================================
-        //  本処理
+        // 本処理
         // ================================================================================
         List<VarEncloseRule> returnList = new ArrayList<VarEncloseRule>();
         // 分析IDの存在確認
         if (defaultAnalyzeContextMap.containsKey(analyzeId)) {
             // --------------------------------------------------
-            //  デフォルト分析コンテキストの括り文字ルールリストを取得
+            // デフォルト分析コンテキストの括り文字ルールリストを取得
             // --------------------------------------------------
             AnalyzeContext analyzeContext = defaultAnalyzeContextMap.get(analyzeId);
 
@@ -626,7 +672,7 @@ public class ContextManager {
             }
 
             // --------------------------------------------------
-            //  カスタム分析コンテキストの括り文字ルールリストを取得
+            // カスタム分析コンテキストの括り文字ルールリストを取得
             // --------------------------------------------------
             analyzeContext = customAnalyzeContextMap.get(analyzeId);
 
@@ -660,9 +706,8 @@ public class ContextManager {
             }
         }
 
-
         // ================================================================================
-        //  事後処理
+        // 事後処理
         // ================================================================================
         // マージ後のリストを返却
         return returnList;

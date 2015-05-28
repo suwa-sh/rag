@@ -10,41 +10,69 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * Path置換ルール。
- *
+ * <p>
  * ・正規表現
  * regexフィールドがtrueの場合、fromを正規表現として解釈します。
- *
+ * </p>
+ * <p>
  * ・暗黙変数
  * org.apache.commons.lang3.SystemUtilsの定数フィールドを${}で括った文字を、実態に置換して利用できます。
  * ${FILE_SEPARATOR}, ${OS_NAME}など
- *
+ * </p>
  */
 public class PathReplaceRule extends BaseRule {
 
-    /** 置換元文字列 */
+    /** 置換元文字列。 */
     private String from;
-    /** 置換後文字列 */
+    /** 置換後文字列。 */
     private String to;
-    /** 正規表現を使用するか */
+    /** 正規表現を使用するか。 */
     private boolean regex;
 
+    /**
+     * 置換元文字列を返します。
+     * @return 置換元文字列
+     */
     public String getFrom() {
         return from;
     }
+
+    /**
+     * 置換元文字列を設定します。
+     * @param from 置換元文字列
+     */
     public void setFrom(String from) {
         this.from = from;
     }
 
+    /**
+     * 置換先文字列を返します。
+     * @return 置換先文字列
+     */
     public String getTo() {
         return to;
     }
+
+    /**
+     * 置換先文字列を設定します。
+     * @param to 置換先文字列
+     */
     public void setTo(String to) {
         this.to = to;
     }
 
+    /**
+     * 正規表現利用フラグを返します。
+     * @return 正規表現利用フラグ
+     */
     public boolean isRegex() {
         return regex;
     }
+
+    /**
+     * 正規表現利用フラグを設定します。
+     * @param regex 正規表現
+     */
     public void setRegex(boolean regex) {
         this.regex = regex;
     }

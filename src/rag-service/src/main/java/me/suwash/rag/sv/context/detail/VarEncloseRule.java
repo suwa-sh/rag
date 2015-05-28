@@ -1,30 +1,53 @@
 package me.suwash.rag.sv.context.detail;
 
-
 /**
  * 変数括り文字ルール。
  */
 public class VarEncloseRule extends BaseRule {
 
-    /** 括り開始文字 */
+    /** 括り開始文字。 */
     private String prefix;
-    /** 括り終了文字 */
+    /** 括り終了文字。 */
     private String surfix;
 
+    /**
+     * prefixを返します。
+     *
+     * @return prefix
+     */
     public String getPrefix() {
-        return prefix;
+        return this.prefix;
     }
+
+    /**
+     * prefixを設定します。
+     *
+     * @param prefix prefix
+     */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
+
+    /**
+     * surfixを返します。
+     *
+     * @return surfix
+     */
     public String getSurfix() {
-        return surfix;
+        return this.surfix;
     }
+
+    /**
+     * surfixを設定します。
+     *
+     * @param surfix surfix
+     */
     public void setSurfix(String surfix) {
         this.surfix = surfix;
     }
 
-    /* (非 Javadoc)
+    /*
+     * (非 Javadoc)
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -35,7 +58,9 @@ public class VarEncloseRule extends BaseRule {
         result = prime * result + ((surfix == null) ? 0 : surfix.hashCode());
         return result;
     }
-    /* (非 Javadoc)
+
+    /*
+     * (非 Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override

@@ -14,22 +14,48 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * TODO クラスの説明。
+ */
 public class AnalyzeWorkTest {
 
     private AnalyzeWork target = new AnalyzeWork();
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @throws Exception xxx
+     */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {}
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @throws Exception xxx
+     */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {}
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @throws Exception xxx
+     */
     @Before
     public void setUp() throws Exception {}
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @throws Exception xxx
+     */
     @After
     public void tearDown() throws Exception {}
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetCurDirStack() {
         // --------------------------------------------------
@@ -47,6 +73,9 @@ public class AnalyzeWorkTest {
         assertNotNull("Stackオブジェクトが取得できること", actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testPushCurDir() {
         // --------------------------------------------------
@@ -72,6 +101,9 @@ public class AnalyzeWorkTest {
         assertEquals("Stackにpushされていること", dir1, actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testPopCurDir() {
         // --------------------------------------------------
@@ -96,6 +128,9 @@ public class AnalyzeWorkTest {
         assertNull("要素がない場合、nullが取得できること", actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetCurDir() {
         // --------------------------------------------------
@@ -118,6 +153,9 @@ public class AnalyzeWorkTest {
         assertEquals("要素の数に変化がないこと", 2, target.getCurDirStack().elementList().size());
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetScopeStack() {
         // --------------------------------------------------
@@ -135,6 +173,9 @@ public class AnalyzeWorkTest {
         assertNotNull("Stackオブジェクトが取得できること", actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testPushScope() {
         // --------------------------------------------------
@@ -154,6 +195,9 @@ public class AnalyzeWorkTest {
         assertEquals("追加した数のScopeが登録されていること", 2, scopeStack.elementList().size());
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testPopScope() {
         // --------------------------------------------------
@@ -173,20 +217,23 @@ public class AnalyzeWorkTest {
 
         actual = target.popScope();
         assertNull("Scopeが登録されていない場合、nullが返されること", actual);
-}
+    }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetCurScope() {
         // --------------------------------------------------
         //  準備
         // --------------------------------------------------
-        String scope1VarName = "scope1Var";
-        String scope1VarType = "Decimal";
-        String scope1VarValue = "1";
-
-        String scope2VarName = "scope2Var";
-        String scope2VarType = "String";
-        String scope2VarValue = "scope2VarValue";
+//        String scope1VarName = "scope1Var";
+//        String scope1VarType = "Decimal";
+//        String scope1VarValue = "1";
+//
+//        String scope2VarName = "scope2Var";
+//        String scope2VarType = "String";
+//        String scope2VarValue = "scope2VarValue";
 
         target.pushScope();
 //        target.addVariable(scope1VarName, scope1VarType, scope1VarValue);
@@ -208,18 +255,21 @@ public class AnalyzeWorkTest {
 //        assertEquals("最後に追加したScopeが返されること", scope2VarValue, actual.getVariable(scope2VarName).getValue());
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetVariableString() {
         // --------------------------------------------------
         //  準備
         // --------------------------------------------------
-        String scope1VarName = "scope1Var";
-        String scope1VarType = "Decimal";
-        String scope1VarValue = "1";
-        String scope1VarValueOverrited = "100";
-
-        String scope2VarType = "String";
-        String scope2VarValue = "Hide!";
+//        String scope1VarName = "scope1Var";
+//        String scope1VarType = "Decimal";
+//        String scope1VarValue = "1";
+//        String scope1VarValueOverrited = "100";
+//
+//        String scope2VarType = "String";
+//        String scope2VarValue = "Hide!";
 
         target.pushScope();
 //        target.addVariable(scope1VarName, scope1VarType, scope1VarValue);
@@ -241,6 +291,9 @@ public class AnalyzeWorkTest {
 //        assertEquals("より狭いスコープの値でHidingされていない場合、元のスコープの値が返されること", scope1VarValueOverrited, actual.getValue());
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetVariableStringString() {
         // TODO AnalyzeID指定で変数を返却するAPIのテストを実装
@@ -257,6 +310,9 @@ public class AnalyzeWorkTest {
         // --------------------------------------------------
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetInvokerStack() {
         // --------------------------------------------------
@@ -274,6 +330,9 @@ public class AnalyzeWorkTest {
         assertNotNull("Stackオブジェクトが取得できること", actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testPushInvoker() {
         // --------------------------------------------------
@@ -304,6 +363,9 @@ public class AnalyzeWorkTest {
         assertNull(actual.pop());
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testPopInvoker() {
         // --------------------------------------------------
@@ -333,6 +395,9 @@ public class AnalyzeWorkTest {
         assertNull(target.popInvoker());
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetCurInvoker() {
         // --------------------------------------------------

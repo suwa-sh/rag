@@ -16,20 +16,46 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * TODO クラスの説明。
+ */
 public class AnalyzerOutputTest {
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @throws Exception xxx
+     */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {}
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @throws Exception xxx
+     */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {}
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @throws Exception xxx
+     */
     @Before
     public void setUp() throws Exception {}
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @throws Exception xxx
+     */
     @After
     public void tearDown() throws Exception {}
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testAddDetail() {
         // --------------------------------------------------
@@ -49,6 +75,9 @@ public class AnalyzerOutputTest {
         assertEquals("登録した分析詳細が反映されていること", AnalyzeStatus.Success, actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetDetailList() {
         // --------------------------------------------------
@@ -73,6 +102,9 @@ public class AnalyzerOutputTest {
         assertEquals("登録した順番に取り出せること", AnalyzeStatus.Error, result.get(1).getStatus());
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetAnalyzedCount() {
         // --------------------------------------------------
@@ -95,6 +127,9 @@ public class AnalyzerOutputTest {
         assertEquals("登録した件数が取り出せること", 2, actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetStatus_Success() {
         // --------------------------------------------------
@@ -117,6 +152,9 @@ public class AnalyzerOutputTest {
         assertEquals("よりエラーレベルの高い結果が取り出せること", AnalyzeStatus.Success, actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetStatus_Warning() {
         // --------------------------------------------------
@@ -139,6 +177,9 @@ public class AnalyzerOutputTest {
         assertEquals("よりエラーレベルの高い結果が取り出せること", AnalyzeStatus.Warning, actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetStatus_Error() {
         // --------------------------------------------------
@@ -161,6 +202,9 @@ public class AnalyzerOutputTest {
         assertEquals("よりエラーレベルの高い結果が取り出せること", AnalyzeStatus.Error, actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetStatus_Processing() {
         // --------------------------------------------------
@@ -182,6 +226,9 @@ public class AnalyzerOutputTest {
         assertEquals("よりエラーレベルの高い結果が取り出せること", AnalyzeStatus.Processing, actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetStatus_Cancel() {
         // --------------------------------------------------
@@ -204,6 +251,9 @@ public class AnalyzerOutputTest {
         assertEquals("よりエラーレベルの高い結果が取り出せること", AnalyzeStatus.Cancel, actual);
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     @Test
     public final void testGetStatusCountMap() {
         // --------------------------------------------------

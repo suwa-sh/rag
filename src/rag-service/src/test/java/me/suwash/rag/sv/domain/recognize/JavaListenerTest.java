@@ -1,7 +1,7 @@
 package me.suwash.rag.sv.domain.recognize;
 
-import me.suwash.rag.recognize.java.JavaLexer;
-import me.suwash.rag.recognize.java.JavaParser;
+import me.suwash.rag.recognize.gen.java.JavaLexer;
+import me.suwash.rag.recognize.gen.java.JavaParser;
 
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;

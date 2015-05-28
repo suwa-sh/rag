@@ -18,47 +18,93 @@ import me.suwash.util.exception.LayerException;
  */
 public class AnalyzerOutput {
 
-    /** バリデーションエラー */
+    /** バリデーションエラー。 */
     Set<ConstraintViolation<AnalyzerInput>> violations;
-    /** 入力データモデル */
+    /** 入力データモデル。 */
     private AnalyzerInput input;
-    /** 進行中の分析処理詳細 */
+    /** 進行中の分析処理詳細。 */
     private AnalyzeDetail currentDetail;
-    /** 分析結果詳細リスト */
+    /** 分析結果詳細リスト。 */
     private List<AnalyzeDetail> detailList = new ArrayList<AnalyzeDetail>();
 
+    /**
+     * コンストラクタ。
+     */
     public AnalyzerOutput() {
         setCurrentDetail();
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public Set<ConstraintViolation<AnalyzerInput>> getViolations() {
         return violations;
     }
+
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param violations xxx
+     */
     public void setViolations(Set<ConstraintViolation<AnalyzerInput>> violations) {
         this.violations = violations;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public AnalyzerInput getInput() {
         return input;
     }
+
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param input xxx
+     */
     public void setInput(AnalyzerInput input) {
         this.input = input;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     */
     public void setCurrentDetail() {
         currentDetail = new AnalyzeDetail();
         currentDetail.setStatus(AnalyzeStatus.Processing);
     }
+
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public AnalyzeDetail getCurrentDetail() {
         return currentDetail;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param phase xxx
+     */
     public void addSuccess(AnalyzePhase phase) {
         currentDetail.setStatus(AnalyzeStatus.Success);
         currentDetail.setPhase(phase);
         detailList.add(currentDetail);
         currentDetail = null;
     }
+
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param phase xxx
+     * @param exception xxx
+     */
     public void addWarn(AnalyzePhase phase, LayerException exception) {
         currentDetail.setStatus(AnalyzeStatus.Warning);
         currentDetail.setPhase(phase);
@@ -66,6 +112,13 @@ public class AnalyzerOutput {
         detailList.add(currentDetail);
         currentDetail = null;
     }
+
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param phase xxx
+     * @param exception xxx
+     */
     public void addError(AnalyzePhase phase, LayerException exception) {
         currentDetail.setStatus(AnalyzeStatus.Error);
         currentDetail.setPhase(phase);
@@ -73,6 +126,13 @@ public class AnalyzerOutput {
         detailList.add(currentDetail);
         currentDetail = null;
     }
+
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @param phase xxx
+     * @param exception xxx
+     */
     public void addCancel(AnalyzePhase phase, LayerException exception) {
         currentDetail.setStatus(AnalyzeStatus.Cancel);
         currentDetail.setPhase(phase);
@@ -81,6 +141,11 @@ public class AnalyzerOutput {
         currentDetail = null;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public AnalyzeStatus getStatus() {
         boolean hasWarn = false;
         boolean hasError = false;
@@ -124,7 +189,11 @@ public class AnalyzerOutput {
         }
     }
 
-
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public Map<AnalyzeStatus, Integer> getStatusCountMap() {
 
         int processingCount = 0;
@@ -165,14 +234,29 @@ public class AnalyzerOutput {
         return resultMap;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public int getAnalyzedCount() {
         return detailList.size();
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public List<AnalyzeDetail> getDetailList() {
         return detailList;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public List<AnalyzeDetail> getWarningList() {
         List<AnalyzeDetail> returnList = new ArrayList<AnalyzeDetail>();
         for (AnalyzeDetail detail : detailList) {
@@ -183,6 +267,11 @@ public class AnalyzerOutput {
         return returnList;
     }
 
+    /**
+     * TODO メソッドのコメント。
+     *
+     * @return xxx
+     */
     public List<AnalyzeDetail> getErrorList() {
         List<AnalyzeDetail> returnList = new ArrayList<AnalyzeDetail>();
         for (AnalyzeDetail detail : detailList) {
