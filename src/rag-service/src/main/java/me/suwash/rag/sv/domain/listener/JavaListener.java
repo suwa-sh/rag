@@ -1,6 +1,6 @@
 package me.suwash.rag.sv.domain.listener;
 
-import me.suwash.rag.recognize.java.JavaBaseListener;
+import me.suwash.rag.recognize.gen.java.JavaBaseListener;
 import me.suwash.rag.sv.domain.analyze.AnalyzeWork;
 
 /**

@@ -3,12 +3,12 @@ package me.suwash.rag.sv.domain.recognize;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.suwash.rag.recognize.java.JavaBaseListener;
-import me.suwash.rag.recognize.java.JavaParser.ExpressionContext;
-import me.suwash.rag.recognize.java.JavaParser.FieldDeclarationContext;
-import me.suwash.rag.recognize.java.JavaParser.ImportDeclarationContext;
-import me.suwash.rag.recognize.java.JavaParser.LocalVariableDeclarationContext;
-import me.suwash.rag.recognize.java.JavaParser.QualifiedNameContext;
+import me.suwash.rag.recognize.gen.java.JavaBaseListener;
+import me.suwash.rag.recognize.gen.java.JavaParser.ExpressionContext;
+import me.suwash.rag.recognize.gen.java.JavaParser.FieldDeclarationContext;
+import me.suwash.rag.recognize.gen.java.JavaParser.ImportDeclarationContext;
+import me.suwash.rag.recognize.gen.java.JavaParser.LocalVariableDeclarationContext;
+import me.suwash.rag.recognize.gen.java.JavaParser.QualifiedNameContext;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -71,7 +71,7 @@ public class SampleJavaListener extends JavaBaseListener {
 
     /*
      * (非 Javadoc)
-     * @see me.suwash.rag.recognize.java.JavaBaseListener#enterExpression(me.suwash.rag.recognize.java.JavaParser.ExpressionContext)
+     * @see me.suwash.rag.recognize.gen.java.JavaBaseListener#enterExpression(me.suwash.rag.recognize.gen.java.JavaParser.ExpressionContext)
      */
     @Override
     public void enterExpression(ExpressionContext ctx) {
